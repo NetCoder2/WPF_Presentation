@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:UI.Themes">
+    
+    <Thickness  x:Key="CommonMargin" Left="25" Right="20" Top="20" Bottom="10" />
+    <GridLength x:Key="GridSeparatorWidth">5</GridLength>
+</ResourceDictionary>

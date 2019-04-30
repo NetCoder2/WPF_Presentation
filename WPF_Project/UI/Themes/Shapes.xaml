@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- Title panel's top layer -->
+    <Style x:Key="TitlePanel" 
+           TargetType="{x:Type Rectangle}">
+        <Setter Property="Stretch" Value="Fill"/>
+        <Setter Property="RadiusX" Value="{Binding PanelRadiusX, FallbackValue=8}"/>
+        <Setter Property="RadiusY" Value="{Binding PanelRadiusY, FallbackValue=8}"/>
+        <Setter Property="Effect">
+            <Setter.Value >
+            <DropShadowEffect ShadowDepth="{Binding ShadowHeight, FallbackValue=0}" 
+                                  Color="{StaticResource ShadowColor}" 
+                                  BlurRadius="{Binding ShadowBlur, FallbackValue=0}" />
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="Fill">
+            <Setter.Value >
+                <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                    <GradientStop Color="{Binding BackColorEnd, FallbackValue=White}"  Offset="0.1" />
+                    <GradientStop Color="{Binding BackColor, FallbackValue={StaticResource PanelColor}}"  Offset="0.8" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
