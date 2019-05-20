@@ -16,7 +16,28 @@ namespace TestApplication_Tests.Core.CurrencyConverter
 
         public CurrConvrterViewModel_Tests()
         {
-            model = new CurrencyConverterViewModel();
+            
+        }
+
+        /// <summary>
+        /// Tests to get currency rates from the www.bank.lv web site 
+        /// </summary>
+        [TestInitialize()]
+        public void TestInitialize()
+        {
+            model = ViewModelLocator.Instance.CurrencyConverterViewModel;
+            model.SetInitialRates();
+        }
+
+
+        /// <summary>
+        /// Tests to get currency rates from the www.bank.lv web site 
+        /// </summary>
+        [TestMethod()]
+        public void CheckInternetTest()
+        {
+            var check = model.CheckInternetConnection();
+            Assert.IsTrue(check);
         }
 
         /// <summary>

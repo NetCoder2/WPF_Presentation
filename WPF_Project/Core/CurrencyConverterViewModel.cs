@@ -15,6 +15,7 @@ namespace Core
         private bool isEURChanged = true;
         private bool isUSChanged = false;
         private bool isRUChanged = false;
+        private const string webLink = "https://www.bank.lv/";
 
         private const string flag_EU = "/UI;component/Images/Flags/Flag_EU.png";
         private const string flag_GB = "/UI;component/Images/Flags/Flag_UK.png";
@@ -168,75 +169,98 @@ namespace Core
         /// </summary>
         public void GetCurrenciesRates()
         {
-            //System.Net.WebProxy pry = new System.Net.WebProxy("192.168.100.11", 8080);
-            ////The DefaultCredentials automically get username and password.
-            //pry.Credentials = CredentialCache.DefaultCredentials;
-            //GlobalProxySelection.Select = pry;
+            DateTime dateCurrency;
+            WebClient client;
+            XDocument xmlDocument;
 
-            DateTime dateCurrency = DateTime.Now;
-
-            var stringMonth = dateCurrency.Month.ToString();
-            //adds zero to the month
-            if (dateCurrency.Month < 10)
+            if (CheckInternetConnection())
             {
-                stringMonth = "0" + dateCurrency.Month;
+                dateCurrency = DateTime.Now;
+
+                var stringMonth = dateCurrency.Month.ToString();
+                //adds zero to the month
+                if (dateCurrency.Month < 10)
+                {
+                    stringMonth = "0" + dateCurrency.Month;
+                }
+
+                var stringDay = dateCurrency.Day.ToString();
+                //adds zero to the day
+                if (dateCurrency.Day < 10)
+                {
+                    stringDay = "0" + dateCurrency.Day;
+                }
+
+                client = new WebClient();
+
+                string downloadString = client.DownloadString(webLink + "vk/ecb.xml?date=" +
+                    dateCurrency.Year + stringMonth + stringDay);
+
+                var cRateString = "<CRates";
+
+                int indexRate = downloadString.IndexOf(cRateString);
+                var begingStr = downloadString.Substring(0, indexRate + cRateString.Length) + ">";
+                int indexDate = downloadString.IndexOf("<Date>");
+                var endStr = downloadString.Substring(indexDate, downloadString.Length - indexDate);
+
+                var xmlString = begingStr + endStr;
+
+
+                xmlDocument = XDocument.Parse(xmlString);
+
+                var data = from d in xmlDocument.Descendants("Currency")
+                           select new
+                           {
+                               CurrencyName = d.Element("ID").Value,
+                               Rate = d.Element("Rate").Value
+                           };
+
+                //Applies currencies rates
+                foreach (var row in data.ToList())
+                {
+                    if (row.CurrencyName == "USD")
+                    {
+                        US_Rate = Convert.ToDouble(row.Rate);
+                    }
+
+                    if (row.CurrencyName == "GBP")
+                    {
+                        UK_Rate = Convert.ToDouble(row.Rate);
+                    }
+
+                    if (row.CurrencyName == "RUB")
+                    {
+                        RU_Rate = Convert.ToDouble(row.Rate);
+                    }
+                }
             }
+        }
 
-            var stringDay = dateCurrency.Day.ToString();
-            //adds zero to the day
-            if (dateCurrency.Day < 10)
+
+        public bool CheckInternetConnection()
+        {
+            try
             {
-                stringDay = "0" + dateCurrency.Day;
+                using (var client = new WebClient())
+                using (client.OpenRead(webLink))
+                {
+                    return true;
+                }
             }
-
-            WebClient client = new WebClient();
-            string downloadString = client.DownloadString("https://www.bank.lv/vk/ecb.xml?date=" +
-                dateCurrency.Year + stringMonth + stringDay);
-
-
-
-            var cRateString = "<CRates";
-
-            int indexRate = downloadString.IndexOf(cRateString);
-            var begingStr = downloadString.Substring(0, indexRate + cRateString.Length) + ">";
-            int indexDate = downloadString.IndexOf("<Date>");
-            var endStr = downloadString.Substring(indexDate, downloadString.Length - indexDate);
-
-            var xmlString = begingStr + endStr;
-
-
-            XDocument xmlDocument = XDocument.Parse(xmlString);
-
-            var data = from d in xmlDocument.Descendants("Currency")
-                       select new
-                       {
-                           CurrencyName = d.Element("ID").Value,
-                           Rate = d.Element("Rate").Value
-                       };
-
-            //Applies currencies rates
-            foreach (var row in data.ToList())
+            catch
             {
-                if (row.CurrencyName == "USD")
-                {
-                    US_Rate = Convert.ToDouble(row.Rate);
-                }
-
-                if (row.CurrencyName == "GBP")
-                {
-                    UK_Rate = Convert.ToDouble(row.Rate);
-                }
-
-                if (row.CurrencyName == "RUB")
-                {
-                    RU_Rate = Convert.ToDouble(row.Rate);
-                }
+                return false;
             }
         }
 
 
 
         public CurrencyConverterViewModel()
+        {
+
+        }
+
+        public void SetInitialRates()
         {
             GetCurrenciesRates();
 

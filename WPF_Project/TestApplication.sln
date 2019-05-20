@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "Helpers\Helpers.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{424CE168-8013-4B55-AC08-3401C1B1C606}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{831120EC-59C7-4729-9797-FA4DF62FE252}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Presentation", "TestProject\WPF_Presentation.csproj", "{831120EC-59C7-4729-9797-FA4DF62FE252}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication_Tests", "TestApplication_Tests\TestApplication_Tests.csproj", "{67371A98-AB34-40F5-96D4-E3178B43A817}"
 EndProject

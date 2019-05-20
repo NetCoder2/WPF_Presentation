@@ -291,12 +291,10 @@ namespace Core
                 return openCalculatorCommand ??
                   (openCalculatorCommand = new RelayCommand(param =>
                   {
-                      //Deactivate = true;
                       var calc = ViewModelLocator.Instance.CalculatorViewModel;
                       calc.Title = "Calculator";
                       calc.Closing += CalculatorDataContextOnClosing;
                       calc.Closed += CalculatorOnClosed;
-                      //settings.BevelPanelContext.LoadAnimationSeconds = settings.BevelPanelContext.LoadAnimationSeconds * 2;
                       calc.OpenWindowFormUrl(WindowPath.CalculatorWindow,
                           calc,
                           CurrentOpenedWindow,
@@ -318,13 +316,21 @@ namespace Core
                 return currencyConverterCommand ??
                   (currencyConverterCommand = new RelayCommand(param =>
                   {
-                      //Deactivate = true;
                       var cur = ViewModelLocator.Instance.CurrencyConverterViewModel;
-                      cur.Title = "Currency Converter";
+                      if (cur.CheckInternetConnection())
+                      {
+                          cur.Title = "Currency Converter";
+                          cur.SetInitialRates();
+                      }
+                      else
+                      {
+                          cur.Title = "An error with Internet";
+                      }
+
                       cur.OpenWindowFormUrl(WindowPath.CurrencyConverterWindow,
-                          cur,
-                          CurrentOpenedWindow,
-                          true);
+                        cur,
+                        CurrentOpenedWindow,
+                        true);
 
                   }));
 
@@ -333,19 +339,13 @@ namespace Core
 
         private void CalculatorOnClosed(object sender, EventArgs eventArgs)
         {
-            Deactivate = false;
+
         }
 
 
         public void CalculatorDataContextOnClosing(object sender, CancelEventArgs cancelEventArgs)
         {
-            var sdsd = 1;
 
-            //CurrentOpenedWindow.Activate();
-            //if (settingsDataContext.DialogResult.Value)
-            //{
-            //    //EquipmentId = equipSelectionList.SelectedItemId;
-            //}
         }
 
         #endregion

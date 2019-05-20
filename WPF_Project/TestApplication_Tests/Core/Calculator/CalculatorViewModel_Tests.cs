@@ -11,7 +11,12 @@ namespace TestApplication_Tests.Core.Calculator
 
         public CalculatorViewModel_Tests()
         {
-            model = new CalculatorViewModel();
+        }
+
+        [TestInitialize()]
+        public void TestInitialize()
+        {
+            model = ViewModelLocator.Instance.CalculatorViewModel;
         }
 
         /// <summary>

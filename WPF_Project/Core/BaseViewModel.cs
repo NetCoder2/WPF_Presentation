@@ -163,12 +163,6 @@ namespace Core
                 CurrentOpenedWindow = (Window)Application.LoadComponent(uri);
 
 
-                //if (OwnerWindow != null)
-                //{
-                //CurrentOpenedWindow.Owner = OwnerWindow;
-
-                // }
-
                 //set the owner for opened window
                 if (owner != null)
                 {
