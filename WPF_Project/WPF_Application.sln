@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Presentation", "TestProject\WPF_Presentation.csproj", "{831120EC-59C7-4729-9797-FA4DF62FE252}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication_Tests", "TestApplication_Tests\TestApplication_Tests.csproj", "{67371A98-AB34-40F5-96D4-E3178B43A817}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "TestApplication_Tests\Tests.csproj", "{67371A98-AB34-40F5-96D4-E3178B43A817}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
