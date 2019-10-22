@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="/UI;component/Themes/CommonResources.xaml" />
                 <ResourceDictionary Source="/UI;component/Themes/Buttons.xaml" />
                 <ResourceDictionary Source="/UI;component/Themes/Windows.xaml" />
+                <ResourceDictionary Source="/UI;component/Themes/Text.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

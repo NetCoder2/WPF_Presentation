@@ -70,10 +70,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Text.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Windows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="Controls\BeveledTextBox.cs" />
     <Compile Include="Panels\WindowTitlePanel.xaml.cs">
       <DependentUpon>WindowTitlePanel.xaml</DependentUpon>
     </Compile>
@@ -137,6 +142,7 @@
     <Resource Include="Images\Buttons\images %281%29.png" />
     <Resource Include="Images\Buttons\currency.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
