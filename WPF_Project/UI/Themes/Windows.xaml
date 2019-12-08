@@ -1,11 +1,15 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:panels="clr-namespace:UI.Panels">
+                    xmlns:panels="clr-namespace:UI.Panels"
+                    xmlns:core="clr-namespace:Core;assembly=Core">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Colors.xaml" />
         <ResourceDictionary Source="Buttons.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <Thickness x:Key="ButtonsViewBoxMargin">13</Thickness>
+
+    <core:BooleanVisibilityConverter x:Key="booleanVisibilityConverter" />
+
 
     <!-- Main window -->
     <Style TargetType="{x:Type Window}" x:Key="StartupWindow">
@@ -23,7 +27,7 @@
                                         Background="{StaticResource BackgroundLightBrush}"
                                         CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}" />
 
-                            <!-- Window border and dropshadown -->
+                            <!-- Window border and dropshadow -->
                             <Border CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}"
                                     Background="{Binding ForegroundLightBrush, FallbackValue=White}">
                                 <Border.Effect>
@@ -33,7 +37,6 @@
 
                             <!-- The main window content -->
                             <Grid>
-
                                 <!-- Corner clipping -->
                                 <Grid.OpacityMask>
                                     <VisualBrush Visual="{Binding ElementName=Container}" />
@@ -47,13 +50,16 @@
                                     <!-- Window Content -->
                                     <RowDefinition Height="*" />
 
+                                    <!-- Bottom Bar -->
+                                    <RowDefinition Height="{Binding BottomHeightGridLength, FallbackValue=42}" />
+
+
                                 </Grid.RowDefinitions>
 
                                 <!-- Title Bar -->
                                 <Grid Grid.Column="0" Panel.ZIndex="1">
                                     
-
-
+  
                                     <Grid.ColumnDefinitions>
                                         <!-- Icon -->
                                         <ColumnDefinition Width="Auto" />
@@ -77,10 +83,6 @@
                                         </Border.Effect>
                                     </Border>
 
-                                    <!-- Icon -->
-                                    <!--<Button Style="{StaticResource SystemIconButton}" Command="{Binding MenuCommand}">
-                                        --><!--<Image Source="/Images/Logo/logo-small.png" />--><!--
-                                    </Button>-->
 
                                     <!-- Title -->
                                     <Viewbox Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
@@ -88,10 +90,12 @@
                                             <TextBlock Text="Test project" 
                                                        FontSize="20"
                                                        FontWeight="Bold"
+                                                       FontFamily="Times New Roman" 
                                                        Foreground="{StaticResource WordBlueBrush}" TextAlignment="Center" >
                                             </TextBlock>
 
                                             <TextBlock Text="WPF presentation" 
+                                                       FontFamily="Times New Roman" 
                                                        Foreground="{StaticResource WordBrownBrush}" TextAlignment="Center" />
                                         </StackPanel>
                                     </Viewbox>
@@ -132,11 +136,94 @@
 
                                 </Grid>
 
-                                <!-- Page Content -->
-                                <Border Grid.Row="1" Padding="{Binding InnerContentPadding}" 
+
+                                <!-- Thge content of the main window-->
+                                <Grid Grid.Row="1" >
+
+
+                                    <!-- Dummy gray background for inactive state of the window -->
+                                    <Border Background="{StaticResource ForegroundDarkBrush}" 
+                                            Opacity="0.4" Panel.ZIndex="10" x:Name="DummyOverlay" 
+                                            Visibility="{Binding Deactivate, Converter={StaticResource booleanVisibilityConverter}}" >
+                                    </Border>
+
+                                    <Grid>
+
+                                        <Grid.RowDefinitions>
+                                            <!-- Drop shadow -->
+                                            <RowDefinition Height="Auto" />
+                                            <!-- Window Content -->
+                                            <RowDefinition Height="*" />
+                                            <!-- Drop shadow -->
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <!-- Page Content -->
+                                        <Border Grid.Row="1" Padding="{Binding InnerContentPadding}" 
                                         Background="{StaticResource MainWindowBrush}">
-                                    <ContentPresenter Content="{TemplateBinding Content}" />
-                                </Border>
+                                            <ContentPresenter Content="{TemplateBinding Content}" />
+                                        </Border> 
+
+
+                                    </Grid>
+                                </Grid>
+
+                                <!-- Title Bar -->
+                                <Grid Grid.Row="2" Grid.Column="0" 
+                                      Panel.ZIndex="1">
+
+
+                                    <Grid.ColumnDefinitions>
+                                        <!-- Icon -->
+                                        <ColumnDefinition Width="Auto" />
+                                        <!-- Title -->
+                                        <ColumnDefinition Width="*" />
+                                        <!-- Windows Button -->
+                                        <ColumnDefinition Width="Auto" />
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Grid.Column ="0" Grid.ColumnSpan="3" 
+                                            BorderThickness ="1" 
+                                            Background="White"
+                                            CornerRadius="{Binding WindowCornerRadius}" >
+                                        <Border.Effect>
+                                            <DropShadowEffect   
+                                                BlurRadius="5" 
+                                                Direction="90"
+                                                ShadowDepth="5"  
+                                                Color="{StaticResource ShadowColor}" />
+                                        </Border.Effect>
+                                    </Border>
+
+
+                                    <StackPanel  HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="4"
+                                             Orientation="Horizontal" >
+
+                                        <!-- label -->
+                                        <TextBlock FontFamily="Times New Roman" 
+                                                   Text="© Jurijs Juhno 2019"
+                                                       FontSize="20"
+                                                       FontWeight="Bold"
+                                                       Foreground="{StaticResource WordBlueBrush}"
+                                                        TextAlignment="Center" 
+                                                        Margin="0,0,30,0" />
+
+                                        <!-- Divide line -->
+                                        <Rectangle  Width="1" Margin="0,0,30,0" Visibility="{Binding AdditionLabelVisible}">
+                                            <Rectangle.Fill>
+                                                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                                    <GradientStop Color="White" Offset="1"/>
+                                                    <GradientStop Color="White"/>
+                                                    <GradientStop Color="#FFB6B6B6" Offset="0.5"/>
+                                                </LinearGradientBrush>
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+
+
+                                    </StackPanel>
+                                    
+                                </Grid>
 
                             </Grid>
 
@@ -160,8 +247,17 @@
                 <ControlTemplate TargetType="{x:Type Window}">
                     <Grid>
 
+                         <!--Dummy gray background for inactive state of the window--> 
+                        <Border Background="{StaticResource ForegroundDarkBrush}" 
+                                            Opacity="0.4" 
+                                            Panel.ZIndex="10" 
+                                            x:Name="DummyOverlay" 
+                                            Margin="{Binding PanelContext.ShadowBlur}"
+                                            Visibility="{Binding Deactivate, Converter={StaticResource booleanVisibilityConverter}}" >
+                        </Border>
+
                         <panels:WindowTitlePanel  
-                                                DataContext="{Binding BevelPanelContext}" 
+                                                DataContext="{Binding PanelContext}" 
                                                 RenderTransformOrigin="0.5, 0.5" 
                                                 Padding="20">
                             <panels:WindowTitlePanel.RenderTransform>

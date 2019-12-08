@@ -156,6 +156,7 @@ namespace Core.TitlePanel
         }
 
 
+
         public WindowAnimation PanelLoadAnimation1 { get => panelLoadAnimation; set => panelLoadAnimation = value; }
 
         #endregion

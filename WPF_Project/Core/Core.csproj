@@ -34,6 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Expression.Effects, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="PropertyChanged, Version=2.6.1.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\packages\PropertyChanged.Fody.2.6.1\lib\net452\PropertyChanged.dll</HintPath>
       <Private>True</Private>
@@ -55,17 +57,20 @@
   <ItemGroup>
     <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
     <Compile Include="AttachedProperties\DialogCloser.cs" />
-    <Compile Include="CalculatorViewModel.cs" />
-    <Compile Include="CurrencyConverterViewModel.cs" />
+    <Compile Include="ValueConverters\BooleanVisibilityConverter.cs" />
+    <Compile Include="ViewModel\ApplicationModels\CalculatorViewModel.cs" />
+    <Compile Include="ViewModel\ApplicationModels\CurrencyConverterViewModel.cs" />
     <Compile Include="Helpers\WindowPath.cs" />
     <Compile Include="TitlePanel\PanelViewModel.cs" />
     <Compile Include="TitlePanel\PanelWindowViewModel.cs" />
     <Compile Include="TitlePanel\TitlePanelViewModel.cs" />
-    <Compile Include="ViewModelLocator.cs" />
-    <Compile Include="WindowViewModel.cs" />
-    <Compile Include="Window\WindowModel.cs" />
-    <Compile Include="BaseModel.cs" />
-    <Compile Include="BaseViewModel.cs" />
+    <Compile Include="ViewModel\Paging\PagerItem.cs" />
+    <Compile Include="ViewModel\Paging\PagingViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\Window\WindowViewModel.cs" />
+    <Compile Include="ViewModel\Window\WindowModel.cs" />
+    <Compile Include="ViewModel\Base\BaseModel.cs" />
+    <Compile Include="ViewModel\Base\BaseViewModel.cs" />
     <Compile Include="RelayCommand.cs" />
   </ItemGroup>
   <ItemGroup>

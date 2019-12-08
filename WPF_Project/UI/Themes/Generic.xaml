@@ -1,0 +1,284 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:interactivity="clr-namespace:System.Windows.Interactivity;assembly=Helpers"
+                    xmlns:local="clr-namespace:UI.Themes"
+                    xmlns:behaviours="clr-namespace:Helpers.Behaviours;assembly=Helpers"
+                    xmlns:controls="clr-namespace:UI.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <!-- Order is important -->
+        <ResourceDictionary Source="Colors.xaml" />
+        <ResourceDictionary Source="CommonResources.xaml" />
+        <ResourceDictionary Source="Text.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <GridLength x:Key="GridSeparator">5</GridLength>
+
+    <Style TargetType="{x:Type ListBoxItem}" x:Key="InactiveTransparentListItem" >
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False"/>
+
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TranslateTransform />
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Grid x:Name="Bd" Background="{TemplateBinding Background}">
+                        <Grid>
+                            <ContentPresenter 
+											Content="{TemplateBinding Content}"
+											ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Selector.IsSelectionActive" Value="False" />
+                                <Condition Property="IsSelected" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd" Property="Background" Value="Transparent" />
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Selector.IsSelectionActive" Value="True" />
+                                <Condition Property="IsSelected" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd" Property="Background" Value="Transparent" />
+                        </MultiTrigger>
+
+
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Selector.IsSelectionActive" Value="True" />
+                                <Condition Property="IsSelected" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd" Property="Background" Value="Transparent" />
+                        </MultiTrigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <!-- Enhanced CheckBox -->
+    <Style TargetType="{x:Type controls:EnhancedCheckBox}">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="AdditionalLabel" Value="label"/>
+        <Setter Property="FontSize" Value="20pt"/>
+        <Setter Property="AdditionalLabelTitle" Value="Title: "/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:EnhancedCheckBox}">
+                    <!-- Main Rectangle  -->
+                    <Border BorderBrush="Black" BorderThickness="1" Background="{TemplateBinding MainRectColor}"
+                            CornerRadius="5">
+                        <Border.Effect>
+                            <DropShadowEffect Color="{StaticResource ShadowColor}" Opacity="0.8"/>
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="{StaticResource GridSeparator}">
+                                </RowDefinition>
+                                <RowDefinition Height="*">
+                                </RowDefinition>
+                                <RowDefinition Height="{StaticResource GridSeparator}">
+                                </RowDefinition>
+                                <RowDefinition Height="0.73*" Name ="AdditionalRow">
+                                </RowDefinition>
+                                <RowDefinition Name="AdditionalRowBottom" Height="5">
+                                </RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource GridSeparator}">
+                                </ColumnDefinition>
+
+                                <ColumnDefinition Width="10*">
+                                </ColumnDefinition>
+
+
+                                <ColumnDefinition Width="*">
+                                </ColumnDefinition>
+
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Small Rectangle  -->
+                            <Border Grid.Row="1" Grid.Column="1"  
+                                    BorderBrush="Black" 
+                                    BorderThickness="1"
+                                    Background="{TemplateBinding  Background}"
+                                    CornerRadius="5" >
+
+                                <!-- Main label  -->
+                                <TextBlock Text="{TemplateBinding TitleLabel}" 
+                                                       FontSize="{TemplateBinding FontSize}"
+                                                       FontWeight="Bold"
+                                                       FontFamily="Times New Roman" 
+                                                       Foreground="{TemplateBinding MainLabelColor}" 
+                                                        VerticalAlignment="Center">
+                                </TextBlock>
+                            </Border>
+
+                            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+
+                                <!-- Additional label title  -->
+                                <TextBlock Text="{TemplateBinding AdditionalLabelTitle}" 
+                                                       FontSize="{TemplateBinding AdditionalLabelFontSize}"
+                                                       FontWeight="Bold"
+                                                       FontFamily="Times New Roman" 
+                                                       Foreground="{TemplateBinding AdditionalLabelTitleColor}" 
+                                                        VerticalAlignment="Center" Margin="0,0,5,0">
+                                </TextBlock>
+
+                                <!-- Additional label  -->
+                                <TextBlock Text="{TemplateBinding AdditionalLabel}" 
+                                                       FontSize="{TemplateBinding AdditionalLabelFontSize}"
+                                                       FontWeight="Bold"
+                                                       FontFamily="Times New Roman" 
+                                                       Foreground="{TemplateBinding AdditionalLabelColor}" 
+                                                        VerticalAlignment="Center">
+                                </TextBlock>
+
+                            </StackPanel>
+
+                            <!-- CheckBox  -->
+                            <Grid Grid.RowSpan="4" Grid.Row="0" Grid.Column="2" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="3">
+                                    </RowDefinition>
+
+                                    <RowDefinition>
+                                    </RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <!-- Check Mark -->
+                                <StackPanel Grid.Row="1">
+                                    <Border 
+                                                CornerRadius="100"  
+                                                Width="{TemplateBinding CheckSize}"
+                                                Height="{TemplateBinding CheckSize}"
+                                                Background="{TemplateBinding Background}" 
+                                                RenderTransformOrigin="0.5, 0.5">
+                                        <Border.RenderTransform>
+                                            <ScaleTransform x:Name="AnimatedScaleTransform"  ScaleX="1" ScaleY="1" />
+                                        </Border.RenderTransform>
+
+                                        <Image x:Name="CheckMark"
+                                                Margin="7"
+                                                Source="/UI;component/Images/Buttons/Check.png">
+                                        </Image>
+                                    </Border >
+
+                                    <Image HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                            Source="/UI;component/Images/Buttons/Shadow.png">
+                                    </Image>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <!-- Shows/Hides Additional Label -->
+                        <Trigger Property="AdditionalLabelVisible" Value="false">
+                            <Setter Property="Height" Value="0" TargetName="AdditionalRowBottom"/>
+                        </Trigger>
+
+                        <!-- Shows/Hides Additional Label -->
+                        <Trigger Property="AdditionalLabelVisible" Value="false">
+                            <Setter Property="Height" Value="0" TargetName="AdditionalRow"/>
+                        </Trigger>
+
+                        <!-- Shows/Hides Check Mark -->
+                        <Trigger Property="IsChecked" Value="false">
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="CheckMark"/>
+                        </Trigger>
+
+                        <!-- Reverses Check Mark -->
+                        <EventTrigger RoutedEvent="controls:EnhancedCheckBox.PreviewMouseLeftButtonDown">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation 
+                                                Storyboard.TargetName="AnimatedScaleTransform" 
+                                                Storyboard.TargetProperty="ScaleX" 
+                                                From="1" To="0" Duration="0:0:0.15" AutoReverse="True"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+
+
+    <!-- CheckBox Selection ListBox -->
+    <Style TargetType="{x:Type ListBox}" x:Key="AnimatedListBox" >
+        <Setter Property="ItemsSource" Value="{Binding Items}"></Setter>
+        <Setter Property="SelectedItem" Value="{Binding SelectedItem}"></Setter>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid x:Name="Bd" >
+                        <Grid.Background>
+                            <SolidColorBrush x:Name="ButtonBrush"  />
+                        </Grid.Background>
+
+                        <controls:EnhancedCheckBox  FontSize="20" 
+                                                            TitleLabel="{Binding Name}" 
+                                                            HorizontalContentAlignment="Stretch"
+                                                             CheckSize="30"
+							Height="60"
+							AdditionalLabel ="{Binding Id}" Margin="5"
+							AdditionalLabelVisible="{Binding ShowName}"
+							IsChecked="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}">
+                        </controls:EnhancedCheckBox>
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type ListBoxItem}"  BasedOn="{StaticResource InactiveTransparentListItem}">
+                </Style>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="interactivity:InteractivityItems.Template">
+            <Setter.Value>
+                <interactivity:InteractivityTemplate>
+                    <interactivity:InteractivityItems>
+                        <interactivity:InteractivityItems.Behaviors>
+                            <behaviours:AnimateListBoxItemsBehavior Tick="0:0:0.05">
+                                <behaviours:AnimateListBoxItemsBehavior.Animation>
+                                    <DoubleAnimation From="320" To="0" Duration="0:0:0.15"/>
+                                </behaviours:AnimateListBoxItemsBehavior.Animation>
+                                <behaviours:AnimateListBoxItemsBehavior.OpacityAnimation>
+                                    <DoubleAnimation From="0" To="1" Duration="0:0:0.5"/>
+                                </behaviours:AnimateListBoxItemsBehavior.OpacityAnimation>
+                            </behaviours:AnimateListBoxItemsBehavior>
+                        </interactivity:InteractivityItems.Behaviors>
+                    </interactivity:InteractivityItems>
+                </interactivity:InteractivityTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+</ResourceDictionary>

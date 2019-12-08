@@ -1,0 +1,44 @@
+﻿<panels:BaseBevelPanel x:Class="UI.Panels.BevelPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI.Panels"
+             xmlns:panels="clr-namespace:UI"  
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources >
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/UI;component/Themes/Panels.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/UI;component/Themes/Shapes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
+    <UserControl.Template >
+        <ControlTemplate TargetType="UserControl" >
+            <Grid >
+                <!-- Bottom layer of the panel-->
+                <StaticResource ResourceKey="LowLayerTitleShadowGrid" />
+
+                <Grid Margin="{Binding BorderThickness, FallbackValue=2}">
+                    <!-- Top layer of the panel-->
+                    <Rectangle  Style="{StaticResource UpperLayerTitlePanel}">
+                    </Rectangle>
+
+                    <Grid >
+
+                        <!-- Content -->
+                        <ContentPresenter Grid.Row="1"  >
+                        </ContentPresenter>
+
+                    </Grid>
+
+                </Grid>
+
+            </Grid>
+        </ControlTemplate>
+    </UserControl.Template>
+</panels:BaseBevelPanel>

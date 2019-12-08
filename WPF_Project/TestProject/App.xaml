@@ -11,6 +11,8 @@
                 <ResourceDictionary Source="/UI;component/Themes/Buttons.xaml" />
                 <ResourceDictionary Source="/UI;component/Themes/Windows.xaml" />
                 <ResourceDictionary Source="/UI;component/Themes/Text.xaml" />
+                <ResourceDictionary Source="/UI;component/Themes/Generic.xaml" />
+                <ResourceDictionary Source="/UI;component/Themes/Panels.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

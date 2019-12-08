@@ -36,6 +36,7 @@
     <Reference Include="Microsoft.Expression.Effects, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
@@ -54,6 +55,8 @@
     <Compile Include="Animation\ObjectAnimations.cs" />
     <Compile Include="Animation\StoryboardHelpers.cs" />
     <Compile Include="Animation\WindowAnimation.cs" />
+    <Compile Include="Behaviours\AnimateListBoxItemsBehavior.cs" />
+    <Compile Include="Behaviours\InteractivityHelper.cs" />
     <Compile Include="Behaviours\TextBoxInputBehavior.cs" />
     <Compile Include="WindowResizer.cs" />
     <Compile Include="ExtensionMethods.cs" />

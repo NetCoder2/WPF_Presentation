@@ -37,6 +37,8 @@
     <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -50,6 +52,14 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\Pager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\BevelPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Panels\WindowTitlePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -66,6 +76,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Panels.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Shapes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -79,6 +97,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="Controls\BeveledTextBox.cs" />
+    <Compile Include="Controls\EnhancedCheckBox.cs" />
+    <Compile Include="Controls\Pager.xaml.cs">
+      <DependentUpon>Pager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\BaseBevelPanel.cs" />
+    <Compile Include="Panels\BevelPanel.xaml.cs">
+      <DependentUpon>BevelPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Panels\WindowTitlePanel.xaml.cs">
       <DependentUpon>WindowTitlePanel.xaml</DependentUpon>
     </Compile>
@@ -137,7 +163,9 @@
     <Resource Include="Images\Buttons\calculator.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\Buttons\Shadow.png" />
     <Resource Include="Images\Buttons\36658.png" />
+    <Resource Include="Images\Buttons\Check.png" />
     <Content Include="Images\Buttons\currency.jpg" />
     <Resource Include="Images\Buttons\images %281%29.png" />
     <Resource Include="Images\Buttons\currency.png" />

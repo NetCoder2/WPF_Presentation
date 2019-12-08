@@ -23,6 +23,9 @@
                                 <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
                                     <GradientStop Color="#FF7C7676" Offset="0.9" />
                                     <GradientStop Color="White" Offset="0.4"/>
+
+                                    <!--<GradientStop Color="White" Offset="0.5"/>
+                                    <GradientStop Color="#FF7C7676" Offset="0.2" />-->
                                     <LinearGradientBrush.RelativeTransform>
                                         <RotateTransform CenterX="0.5" CenterY="0.5" Angle="139" />
                                     </LinearGradientBrush.RelativeTransform>

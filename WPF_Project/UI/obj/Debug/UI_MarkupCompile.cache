@@ -4,17 +4,17 @@
 library
 C#
 .cs
-C:\Users\Yuri\Desktop\WPF\WPF_Presentation\WPF_Project\UI\obj\Debug\
+C:\Users\Yuri\Desktop\WPF\My_WPF\My_WPF\WPF_Presentation\WPF_Project\UI\obj\Debug\
 UI
 none
 false
 DEBUG;TRACE
 
-71665102504
+11860320264
 11693595385
-5-1589073290
-171470319590
-Panels\WindowTitlePanel.xaml;Themes\Buttons.xaml;Themes\Colors.xaml;Themes\CommonResources.xaml;Themes\Shapes.xaml;Themes\Text.xaml;Themes\Windows.xaml;
+9-1227939196
+19-351286341
+Controls\Pager.xaml;Panels\BevelPanel.xaml;Panels\WindowTitlePanel.xaml;Themes\Buttons.xaml;Themes\Colors.xaml;Themes\CommonResources.xaml;Themes\Generic.xaml;Themes\Panels.xaml;Themes\Shapes.xaml;Themes\Text.xaml;Themes\Windows.xaml;
 
 False
 

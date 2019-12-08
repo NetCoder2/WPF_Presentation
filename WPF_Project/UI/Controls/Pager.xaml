@@ -1,0 +1,345 @@
+﻿<UserControl x:Class="UI.Controls.Pager"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:ee="http://schemas.microsoft.com/expression/2010/effects"
+             xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+             xmlns:local="clr-namespace:UI.Controls"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="60" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/Colors.xaml" />
+                <ResourceDictionary Source="../Themes/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+
+            <Thickness  x:Key="ButtonMargin" Left="0" Right="5" Top="0" Bottom="0" />
+
+            <!-- Scale factor for Mouse Down event -->
+            <system:Double x:Key="Scale">1.6</system:Double>
+            
+            <!-- Arrow style-->
+            <Style TargetType="{x:Type ed:BlockArrow}" x:Key="PagerArrow" BasedOn="{x:Null}">
+                <Setter Property="Stroke" Value="DarkGreen"  />
+                <Setter Property="VerticalAlignment" Value="Stretch" />
+                <Setter Property="ArrowBodySize" Value="0.69" />
+                <Setter Property="ArrowheadAngle" Value="70" />
+                <Setter Property="Height" Value="35" />
+                <Setter Property="Width" Value="40" />
+                <Setter Property="Fill"  >
+                    <Setter.Value>
+                        <RadialGradientBrush>
+                            <GradientStop Color="White"/>
+                            <GradientStop Color="{StaticResource WordLightGreen}" Offset="1"/>
+                        </RadialGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- Prev/Next Button style-->
+            <Style TargetType="{x:Type Button}" x:Key="PagerButton" BasedOn="{StaticResource IconButton}">
+                <Setter Property="Foreground" Value="{StaticResource ForegroundDarkBrush}"  />
+                <Setter Property="Background" Value="{StaticResource LightBlueBrush}" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Width" Value="{Binding ElementName=LayoutRoot, Path=Height}" />
+                <Setter Property="Margin" Value="{StaticResource ButtonMargin}" />
+            </Style>
+
+
+
+            <!-- Page index button -->
+            <!--<Style TargetType="Button" x:Key="PageButton" BasedOn="{StaticResource SimpleButton}">
+                <Setter Property="Width" Value="40" />
+                <Setter Property="Content" Value="1" />
+                <Setter Property="Background" Value="Transparent" />
+               
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            -->
+            <!-- Label -->
+            <!--
+                            <Border Background="{TemplateBinding Background}">
+                                <productionTimeUi:TextPath  
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Text="{TemplateBinding Content}"
+                                        Style="{StaticResource BorderedLabelBrown}"
+                                        FontSize="20pt">
+                                </productionTimeUi:TextPath>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+            </Style>-->
+
+
+            <!--Radio Buton with Page Number-->
+            <Style TargetType="RadioButton" x:Key="PageRadioButton">
+                <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+                <Setter Property="VerticalAlignment" Value="Stretch" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False"/>
+                <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
+                <!--<Setter Property="Margin" Value="10"/>-->
+                <Setter Property="Content" Value="1" />
+                <Setter Property="Background" Value="Transparent" />
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="RadioButton">
+                            <!-- Label -->
+                            <Border Background="{TemplateBinding Background}" Padding="15,0,15,8">
+                                <!--<productionTimeUi:TextPath x:Name="rbText"
+                                        RenderTransformOrigin="0.5,0.6"                      
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Style="{StaticResource BorderedLabelBrown}"
+                                        FontSize="{Binding RelativeSource={RelativeSource
+                            AncestorType=UserControl}, Path=PagerFontSize}">
+                                    <productionTimeUi:TextPath.RenderTransform>
+                                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                                    </productionTimeUi:TextPath.RenderTransform>
+                                </productionTimeUi:TextPath>-->
+                                <Label x:Name="rbText"
+                                        RenderTransformOrigin="0.5,0.6"                      
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                       Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+                                       FontSize="{Binding RelativeSource={RelativeSource
+                            AncestorType=UserControl}, Path=PagerFontSize}"
+                                        FontFamily="Arial Black" FontWeight="Bold" Foreground="{StaticResource WordBrownBrush}">
+                                    <Label.RenderTransform>
+                                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                                    </Label.RenderTransform>
+                                </Label>
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <!-- Trigger for scale effect if checked-->
+                                <EventTrigger RoutedEvent="RadioButton.Checked">
+                                    <EventTrigger.Actions>
+                                        <BeginStoryboard>
+                                            <Storyboard TargetProperty="RenderTransform.ScaleX" TargetName="rbText">
+                                                <DoubleAnimation
+                                                                 From="1" To="{StaticResource Scale}"
+                                                                 Duration="0" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+
+                                        <BeginStoryboard>
+                                            <Storyboard TargetProperty="RenderTransform.ScaleY" TargetName="rbText">
+                                                <DoubleAnimation
+                                                                 From="1" To="{StaticResource Scale}"
+                                                                 Duration="0" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger.Actions>
+
+                                </EventTrigger>
+
+                                <!-- Trigger for scale effect if unchecked-->
+                                <EventTrigger RoutedEvent="RadioButton.Unchecked">
+                                    <EventTrigger.Actions>
+                                        <BeginStoryboard>
+                                            <Storyboard TargetProperty="RenderTransform.ScaleX" TargetName="rbText">
+                                                <DoubleAnimation
+                                                                 From="{StaticResource Scale}" To="1"
+                                                                 Duration="0" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+
+                                        <BeginStoryboard>
+                                            <Storyboard TargetProperty="RenderTransform.ScaleY" TargetName="rbText">
+                                                <DoubleAnimation
+                                                                 From="{StaticResource Scale}" To="1"
+                                                                 Duration="0" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger.Actions>
+
+                                </EventTrigger>
+
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+                <!-- Tone effect -->
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <ee:ColorToneEffect
+                                    DarkColor="Black" LightColor="White" Desaturation="0" ToneAmount="0"/>
+                    </Setter.Value>
+                </Setter>
+
+                <!-- Scale Effect -->
+                <Setter Property="RenderTransform" >
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                    </Setter.Value>
+                </Setter>
+
+
+
+                <Style.Triggers>
+
+
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsChecked" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <!--<Setter Property="RenderTransform" >
+                            <Setter.Value>
+                                <ScaleTransform ScaleX="{StaticResource Scale}" ScaleY="{StaticResource Scale}" />
+                            </Setter.Value>
+                        </Setter>-->
+
+                        <!-- Tone effect -->
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <ee:ColorToneEffect
+                                    DarkColor="Black" LightColor="White" Desaturation="0" ToneAmount="1"/>
+                            </Setter.Value>
+                        </Setter>
+                    </MultiTrigger>
+
+                </Style.Triggers>
+            </Style>
+
+
+        </ResourceDictionary>
+
+
+
+    </UserControl.Resources>
+
+
+    <DockPanel x:Name="LayoutRoot">
+
+        <!-- First page button-->
+        <Button Style="{DynamicResource PagerButton}" Margin="0,0,5,0"  
+                x:Name="FirstPageButton" Click="FirstPageButton_Click" >
+            <Viewbox Margin="10">
+                <StackPanel Orientation="Horizontal">
+                    <!-- Stop line -->
+                    <Border  
+                        BorderBrush="DarkGreen"
+                        BorderThickness="1"
+                        Width="4"
+                        Background="{StaticResource WordLightGreenBrush}">
+                    </Border>
+                    <!-- Arrow -->
+                    <ed:BlockArrow Orientation="Left" Style="{StaticResource PagerArrow}" >
+                    </ed:BlockArrow>
+                </StackPanel>
+            </Viewbox>
+        </Button>
+
+
+        <!-- Prev page button-->
+        <Button Style="{DynamicResource PagerButton}" Margin="0,0,20,0" x:Name="PrevPageButton" Click="PrevPageButton_Click"
+                >
+            <Viewbox Margin="10">
+                <ed:BlockArrow Orientation="Left" Style="{StaticResource PagerArrow}">
+                </ed:BlockArrow>
+            </Viewbox>
+        </Button>
+
+
+        <ListBox Name="pagerList" HorizontalContentAlignment="Stretch"
+                  VerticalContentAlignment="Stretch"
+            Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center"
+                 SelectionChanged="pagerList_SelectionChanged"
+                 PreviewMouseLeftButtonDown="pagerList_PreviewMouseLeftButtonDown"  >
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal"   Height="{Binding ElementName=LayoutRoot, Path=Height}">
+                        <!--Radio Button -->
+                        <RadioButton Style="{StaticResource PageRadioButton}"
+                                     Content="{Binding PageIndex}"
+                                     IsChecked="{Binding IsSelected,
+                                                RelativeSource={RelativeSource FindAncestor,
+                                                        AncestorType={x:Type ListBoxItem}}}"
+                                     
+                                     VerticalAlignment="Bottom" />
+
+                        <!-- Divide line -->
+                        <Rectangle HorizontalAlignment="Left"  Width="1" Margin="0,0,0,0">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1"
+                                    MappingMode="RelativeToBoundingBox"
+                                    StartPoint="0.5,0">
+                                    <GradientStop Color="White" Offset="1"/>
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFDADADA" Offset="0.5"/>
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+            <ListBox.ItemContainerStyle >
+                <Style TargetType="{x:Type ListBoxItem}"  BasedOn="{StaticResource InactiveTransparentListItem}">
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+
+
+
+
+        <!-- Next page button-->
+        <Button Style="{DynamicResource PagerButton}" Margin="20,0,5,0" x:Name="NextPageButton" Click="NextPageButton_Click"
+                >
+            <Viewbox Margin="10">
+                <ed:BlockArrow Orientation="Right" Style="{StaticResource PagerArrow}" >
+                </ed:BlockArrow>
+            </Viewbox>
+        </Button>
+
+
+
+        <!-- Last page button-->
+        <Button Style="{DynamicResource PagerButton}" x:Name="LastPageButton" Click="LastPageButton_Click"
+                >
+
+            <Viewbox Margin="10">
+                <StackPanel Orientation="Horizontal">
+                    <!-- Arrow -->
+                    <ed:BlockArrow Orientation="Right" Style="{StaticResource PagerArrow}" >
+                    </ed:BlockArrow>
+                    <!-- Stop line -->
+                    <Border  
+                        BorderBrush="DarkGreen"
+                        BorderThickness="1"
+                        Width="4"
+                        Background="{StaticResource WordLightGreenBrush}">
+                    </Border>
+                </StackPanel>
+            </Viewbox>
+        </Button>
+
+
+        <!-- Hidden button-->
+        <Button Style="{DynamicResource PagerButton}" Visibility="Hidden">
+            <ed:BlockArrow Orientation="Right" Style="{StaticResource PagerArrow}" >
+            </ed:BlockArrow>
+        </Button>
+
+    </DockPanel>
+
+
+</UserControl>
