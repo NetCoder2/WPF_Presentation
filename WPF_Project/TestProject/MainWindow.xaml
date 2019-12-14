@@ -91,13 +91,13 @@
                     VerticalAlignment="Center" 
                     HorizontalAlignment="Center">
             <Button  Style="{DynamicResource RoundedButton}"
-            Command="{Binding OpenCalculatorCommand}"
+            Command="{Binding CSharpTestCommand}"
           Background="{StaticResource WordRedBrush}"
                 BorderBrush="{StaticResource WordLightRedBrush}"
             Foreground="Yellow"
             Padding="1"
              Width="300" Height="200">
-                <Image Source="/UI;component/Images/Buttons/calculator.png"/>
+                <!--<Image Source="/UI;component/Images/Buttons/calculator.png"/>-->
             </Button>
             <Label Style="{StaticResource ButtonLabel}"
                 Content="C# Test" HorizontalAlignment="Center" 

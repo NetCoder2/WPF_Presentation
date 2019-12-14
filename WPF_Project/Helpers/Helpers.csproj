@@ -52,12 +52,12 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvancedObservableCollection.cs" />
     <Compile Include="Animation\ObjectAnimations.cs" />
     <Compile Include="Animation\StoryboardHelpers.cs" />
     <Compile Include="Animation\WindowAnimation.cs" />
     <Compile Include="Behaviours\AnimateListBoxItemsBehavior.cs" />
     <Compile Include="Behaviours\InteractivityHelper.cs" />
-    <Compile Include="Behaviours\TextBoxInputBehavior.cs" />
     <Compile Include="WindowResizer.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Helper.cs" />

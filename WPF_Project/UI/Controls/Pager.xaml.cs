@@ -22,7 +22,7 @@ namespace UI.Controls
     /// </summary>
     public partial class Pager : UserControl
     {
-
+        public static readonly RoutedEvent OnPageChanged;
         private class PagerItem
         {
             public int PageIndex
@@ -39,7 +39,7 @@ namespace UI.Controls
 
 
 
-        private PagingViewModel context;
+       // private PagingViewModel context;
         private static int defaultPagesCount = 8;
         private static int defaultShowPagesCount = 5;
         private static int defaultCurrentPageIndex = 1;
@@ -50,6 +50,7 @@ namespace UI.Controls
 
         #region Dependency properties
 
+        public static readonly DependencyProperty IsButtonsVisibleProperty;
         public static readonly DependencyProperty PagesCountProperty;
         public static readonly DependencyProperty ShowPagesCountProperty;
         public static readonly DependencyProperty PagerFontSizeProperty;
@@ -102,6 +103,27 @@ namespace UI.Controls
             set { base.SetValue(RoundButtonRadiusProperty, value); }
         }
 
+        /// <summary>
+        /// Shows/Hides Prev/Next,Last/First buttons
+        /// </summary>
+        public bool IsButtonsVisible
+        {
+            get { return (bool)base.GetValue(IsButtonsVisibleProperty); }
+            set { base.SetValue(IsButtonsVisibleProperty, value); }
+        }
+
+        public event RoutedEventHandler PageChanged
+        {
+            add
+            {
+                base.AddHandler(Pager.OnPageChanged, value);
+            }
+            remove
+            {
+                base.RemoveHandler(OnPageChanged, value);
+            }
+        }
+
         static Pager()
         {
             PagesCountProperty = DependencyProperty.Register("PagesCount",
@@ -131,6 +153,15 @@ namespace UI.Controls
                 typeof(int),
                 typeof(Pager),
                 new PropertyMetadata(defaultCurrentPageIndex, CurrentPageIndexChanged));
+
+
+            IsButtonsVisibleProperty = DependencyProperty.Register("IsButtonsVisible",
+                typeof(bool),
+                typeof(Pager),
+                new PropertyMetadata(true));
+
+            Pager.OnPageChanged = EventManager.RegisterRoutedEvent("PageChanged",
+                RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Pager));
         }
 
         private static void PagesCountChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -223,6 +254,8 @@ namespace UI.Controls
                 CurrentPageIndex = item.PageIndex;
                 isSelectionChanged = false;
                 pagerList.SelectedItem = pagerItems.Single(i => i.PageIndex == item.PageIndex);
+                RaisePageChanged();
+
             }
 
 
@@ -251,6 +284,8 @@ namespace UI.Controls
             RefreshPageArea(index);
             var item = pagerItems.Single(i => i.PageIndex == index);
             pagerList.SelectedItem = item;
+
+            RaisePageChanged();
         }
 
         private void LastPageButton_Click(object sender, RoutedEventArgs e)
@@ -280,6 +315,13 @@ namespace UI.Controls
             {
                 GotoPage(1);
             }
+        }
+
+
+        private void RaisePageChanged()
+        {
+            RoutedEventArgs args = new RoutedEventArgs(OnPageChanged);
+            RaiseEvent(args);
         }
 
 

@@ -8,6 +8,7 @@
              xmlns:local="clr-namespace:UI.Controls"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
+             xmlns:core="clr-namespace:Core;assembly=Core"
              d:DesignHeight="60" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -16,7 +17,8 @@
                 <ResourceDictionary Source="../Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-
+            <core:BooleanVisibilityConverter x:Key="booleanVisibilityConverter" />
+            
             <Thickness  x:Key="ButtonMargin" Left="0" Right="5" Top="0" Bottom="0" />
 
             <!-- Scale factor for Mouse Down event -->
@@ -50,35 +52,6 @@
             </Style>
 
 
-
-            <!-- Page index button -->
-            <!--<Style TargetType="Button" x:Key="PageButton" BasedOn="{StaticResource SimpleButton}">
-                <Setter Property="Width" Value="40" />
-                <Setter Property="Content" Value="1" />
-                <Setter Property="Background" Value="Transparent" />
-               
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            -->
-            <!-- Label -->
-            <!--
-                            <Border Background="{TemplateBinding Background}">
-                                <productionTimeUi:TextPath  
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        Text="{TemplateBinding Content}"
-                                        Style="{StaticResource BorderedLabelBrown}"
-                                        FontSize="20pt">
-                                </productionTimeUi:TextPath>
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-
-            </Style>-->
-
-
             <!--Radio Buton with Page Number-->
             <Style TargetType="RadioButton" x:Key="PageRadioButton">
                 <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
@@ -86,7 +59,6 @@
                 <Setter Property="HorizontalAlignment" Value="Stretch" />
                 <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False"/>
                 <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
-                <!--<Setter Property="Margin" Value="10"/>-->
                 <Setter Property="Content" Value="1" />
                 <Setter Property="Background" Value="Transparent" />
 
@@ -94,19 +66,7 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="RadioButton">
                             <!-- Label -->
-                            <Border Background="{TemplateBinding Background}" Padding="15,0,15,8">
-                                <!--<productionTimeUi:TextPath x:Name="rbText"
-                                        RenderTransformOrigin="0.5,0.6"                      
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
-                                        Style="{StaticResource BorderedLabelBrown}"
-                                        FontSize="{Binding RelativeSource={RelativeSource
-                            AncestorType=UserControl}, Path=PagerFontSize}">
-                                    <productionTimeUi:TextPath.RenderTransform>
-                                        <ScaleTransform ScaleX="1" ScaleY="1" />
-                                    </productionTimeUi:TextPath.RenderTransform>
-                                </productionTimeUi:TextPath>-->
+                            <Border Background="{TemplateBinding Background}" Padding="15,0,15,0">
                                 <Label x:Name="rbText"
                                         RenderTransformOrigin="0.5,0.6"                      
                                         VerticalAlignment="Center"
@@ -195,12 +155,6 @@
                         <MultiTrigger.Conditions>
                             <Condition Property="IsChecked" Value="True" />
                         </MultiTrigger.Conditions>
-                        <!--<Setter Property="RenderTransform" >
-                            <Setter.Value>
-                                <ScaleTransform ScaleX="{StaticResource Scale}" ScaleY="{StaticResource Scale}" />
-                            </Setter.Value>
-                        </Setter>-->
-
                         <!-- Tone effect -->
                         <Setter Property="Effect">
                             <Setter.Value>
@@ -225,7 +179,11 @@
 
         <!-- First page button-->
         <Button Style="{DynamicResource PagerButton}" Margin="0,0,5,0"  
-                x:Name="FirstPageButton" Click="FirstPageButton_Click" >
+                x:Name="FirstPageButton" Click="FirstPageButton_Click" 
+                Visibility="{Binding RelativeSource={RelativeSource 
+                            AncestorType=UserControl}, Path=IsButtonsVisible, 
+            Converter={StaticResource booleanVisibilityConverter}}"
+                >
             <Viewbox Margin="10">
                 <StackPanel Orientation="Horizontal">
                     <!-- Stop line -->
@@ -244,7 +202,11 @@
 
 
         <!-- Prev page button-->
-        <Button Style="{DynamicResource PagerButton}" Margin="0,0,20,0" x:Name="PrevPageButton" Click="PrevPageButton_Click"
+        <Button Style="{DynamicResource PagerButton}" Margin="0,0,20,0" 
+                x:Name="PrevPageButton" Click="PrevPageButton_Click"
+                Visibility="{Binding RelativeSource={RelativeSource 
+                            AncestorType=UserControl}, Path=IsButtonsVisible, 
+            Converter={StaticResource booleanVisibilityConverter}}"
                 >
             <Viewbox Margin="10">
                 <ed:BlockArrow Orientation="Left" Style="{StaticResource PagerArrow}">
@@ -254,6 +216,7 @@
 
 
         <ListBox Name="pagerList" HorizontalContentAlignment="Stretch"
+                 BorderThickness="0"
                   VerticalContentAlignment="Stretch"
             Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center"
                  SelectionChanged="pagerList_SelectionChanged"
@@ -303,6 +266,9 @@
 
         <!-- Next page button-->
         <Button Style="{DynamicResource PagerButton}" Margin="20,0,5,0" x:Name="NextPageButton" Click="NextPageButton_Click"
+                Visibility="{Binding RelativeSource={RelativeSource 
+                            AncestorType=UserControl}, Path=IsButtonsVisible, 
+            Converter={StaticResource booleanVisibilityConverter}}"
                 >
             <Viewbox Margin="10">
                 <ed:BlockArrow Orientation="Right" Style="{StaticResource PagerArrow}" >
@@ -314,6 +280,10 @@
 
         <!-- Last page button-->
         <Button Style="{DynamicResource PagerButton}" x:Name="LastPageButton" Click="LastPageButton_Click"
+                Visibility="{Binding RelativeSource={RelativeSource 
+                            AncestorType=UserControl}, Path=IsButtonsVisible, 
+            Converter={StaticResource booleanVisibilityConverter}}"
+                
                 >
 
             <Viewbox Margin="10">

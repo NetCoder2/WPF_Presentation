@@ -35,8 +35,6 @@ namespace Core.Helpers
         }
 
 
-
-
         /// <summary>
         /// The main window for the application
         /// </summary>

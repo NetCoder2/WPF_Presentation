@@ -7,11 +7,9 @@ using System.Windows.Input;
 
 namespace Core
 {
-    /// <summary>
-    /// The view model to perform C# test
-    /// </summary>
-    public class CSharpTestViewModel  : WindowModel
+    public class TestingSelectionViewModel : BaseViewModel
     {
+
         private bool isFinishedTest = false;
 
 
@@ -117,7 +115,7 @@ namespace Core
         }
 
 
-        public CSharpTestViewModel()
+        public TestingSelectionViewModel()
         {
             TestSelectionDataContext = new TestingCSListDesignViewModel();
             TestSelectionDataContext.PageCount = 3;

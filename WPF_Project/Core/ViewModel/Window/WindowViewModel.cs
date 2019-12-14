@@ -356,20 +356,12 @@ namespace Core
                 return cSharpTestCommand ??
                   (cSharpTestCommand = new RelayCommand(param =>
                   {
-                      var cur = ViewModelLocator.Instance.CurrencyConverterViewModel;
-                      if (cur.CheckInternetConnection())
-                      {
-                          cur.Title = "Currency Converter";
-                          cur.SetInitialRates();
-                      }
-                      else
-                      {
-                          cur.Title = "An error with Internet";
-                      }
+                      var test = ViewModelLocator.Instance.CSharpTestViewModel;
+                      test.Title = "C# test";
 
-                      cur.Closed += CurrencyConverterOnClosed;
-                      cur.OpenWindowFormUrl(WindowPath.CurrencyConverterWindow,
-                        cur,
+                      test.Closed += CurrencyConverterOnClosed;
+                      test.OpenWindowFormUrl(WindowPath.CSharpTestWindow,
+                        test,
                         CurrentOpenedWindow,
                         true);
 
