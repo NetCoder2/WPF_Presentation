@@ -75,9 +75,12 @@ namespace Helpers.Behaviours
 
             foreach (var item in items)
             {
-                item.Opacity = 0;
-                TranslateTransform rotateTransform1 = new TranslateTransform(320, 0);
-                item.RenderTransform = rotateTransform1;
+                if (item != null)
+                {
+                    item.Opacity = 0;
+                    TranslateTransform rotateTransform1 = new TranslateTransform(320, 0);
+                    item.RenderTransform = rotateTransform1;
+                }
             }
             var enumerator = items.GetEnumerator();
             if (enumerator.MoveNext())
@@ -85,16 +88,20 @@ namespace Helpers.Behaviours
                 DispatcherTimer timer = new DispatcherTimer() { Interval = Tick };
                 timer.Tick += (s, timerE) =>
                 {
-                    var item = enumerator.Current;
-                    item.BeginAnimation(ListBoxItem.OpacityProperty, OpacityAnimation);
-                    item.RenderTransform.BeginAnimation(TranslateTransform.XProperty, Animation);
-                    if (!enumerator.MoveNext())
+                    if (enumerator.Current != null)
                     {
-                        timer.Stop();
+                        var item = enumerator.Current;
+                        item.BeginAnimation(ListBoxItem.OpacityProperty, OpacityAnimation);
+                        item.RenderTransform.BeginAnimation(TranslateTransform.XProperty, Animation);
+                        if (!enumerator.MoveNext())
+                        {
+                            timer.Stop();
+                        }
                     }
                 };
                 timer.Start();
             }
+
         }
 
     }

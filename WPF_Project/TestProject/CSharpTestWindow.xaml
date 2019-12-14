@@ -10,7 +10,7 @@
         WindowStartupLocation="CenterScreen" 
         core:DialogCloser.Value ="{Binding DialogResult}" 
         Style="{StaticResource PanelWindow}"  ShowInTaskbar="True"
-        Title="Calculator" Height="500" Width="600">
+        Title="Calculator" Height="500" Width="600" Loaded="Window_Loaded">
     <Grid>
 
         <Grid DataContext="{Binding RelativeSource={RelativeSource FindAncestor, 

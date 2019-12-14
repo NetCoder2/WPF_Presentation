@@ -55,7 +55,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
     <Compile Include="AttachedProperties\DialogCloser.cs" />
     <Compile Include="ValueConverters\BooleanVisibilityConverter.cs" />
     <Compile Include="ViewModel\ApplicationModels\CalculatorViewModel.cs" />

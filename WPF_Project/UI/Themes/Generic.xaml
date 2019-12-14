@@ -324,7 +324,7 @@
             </Setter.Value>
         </Setter>
 
-        <!--<Setter Property="interactivity:InteractivityItems.Template">
+        <Setter Property="interactivity:InteractivityItems.Template">
             <Setter.Value>
                 <interactivity:InteractivityTemplate>
                     <interactivity:InteractivityItems>
@@ -341,7 +341,7 @@
                     </interactivity:InteractivityItems>
                 </interactivity:InteractivityTemplate>
             </Setter.Value>
-        </Setter>-->
+        </Setter>
 
     </Style>
 
