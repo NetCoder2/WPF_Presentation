@@ -27,12 +27,14 @@ namespace Core.Helpers
         }
 
         /// <summary>
-        /// The window with the loading spinner
+        /// The window with the C# test
         /// </summary>
-        public static string LoadingWindow
+        public static string CSharpTestWindow
         {
-            get { return "/Loading.xaml"; }
+            get { return "/CSharpTestWindow.xaml"; }
         }
+
+
 
 
         /// <summary>

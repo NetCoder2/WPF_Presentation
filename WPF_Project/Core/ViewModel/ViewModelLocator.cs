@@ -41,6 +41,11 @@ namespace Core
         /// </summary>
         public CurrencyConverterViewModel CurrencyConverterViewModel { get { return CreateViewModel<CurrencyConverterViewModel>(); } }
 
+        /// <summary>
+        /// The C# test view model
+        /// </summary>
+        public CSharpTestViewModel CSharpTestViewModel { get { return CreateViewModel<CSharpTestViewModel>(); } }
+
 
         protected T CreateViewModel<T>() where T : new()
         {

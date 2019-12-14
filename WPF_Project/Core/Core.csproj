@@ -59,6 +59,7 @@
     <Compile Include="AttachedProperties\DialogCloser.cs" />
     <Compile Include="ValueConverters\BooleanVisibilityConverter.cs" />
     <Compile Include="ViewModel\ApplicationModels\CalculatorViewModel.cs" />
+    <Compile Include="ViewModel\ApplicationModels\CSharpTestViewModel.cs" />
     <Compile Include="ViewModel\ApplicationModels\CurrencyConverterViewModel.cs" />
     <Compile Include="Helpers\WindowPath.cs" />
     <Compile Include="TitlePanel\PanelViewModel.cs" />

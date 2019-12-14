@@ -202,7 +202,7 @@
 
                                         <!-- label -->
                                         <TextBlock FontFamily="Times New Roman" 
-                                                   Text="© Jurijs Juhno 2019"
+                                                   Text="WPF Presenatation"
                                                        FontSize="20"
                                                        FontWeight="Bold"
                                                        Foreground="{StaticResource WordBlueBrush}"

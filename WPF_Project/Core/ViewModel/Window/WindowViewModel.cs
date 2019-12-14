@@ -344,6 +344,40 @@ namespace Core
             }
         }
 
+
+        /// <summary>
+        /// The command to show the C# test window
+        /// </summary>
+        private ICommand cSharpTestCommand;
+        public ICommand CSharpTestCommand
+        {
+            get
+            {
+                return cSharpTestCommand ??
+                  (cSharpTestCommand = new RelayCommand(param =>
+                  {
+                      var cur = ViewModelLocator.Instance.CurrencyConverterViewModel;
+                      if (cur.CheckInternetConnection())
+                      {
+                          cur.Title = "Currency Converter";
+                          cur.SetInitialRates();
+                      }
+                      else
+                      {
+                          cur.Title = "An error with Internet";
+                      }
+
+                      cur.Closed += CurrencyConverterOnClosed;
+                      cur.OpenWindowFormUrl(WindowPath.CurrencyConverterWindow,
+                        cur,
+                        CurrentOpenedWindow,
+                        true);
+
+                  }));
+
+            }
+        }
+
         private void CalculatorOnClosed(object sender, EventArgs eventArgs)
         {
             Deactivate = false;

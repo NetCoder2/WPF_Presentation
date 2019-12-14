@@ -168,7 +168,7 @@ namespace Core
                 {
                     //sets iniactive owner Window with gray layer
                     var ownerContext = owner.DataContext as BaseViewModel;
-                    if (ownerContext != null && windowUrl != WindowPath.LoadingWindow)
+                    if (ownerContext != null)
                     {
                         ownerContext.Deactivate = true;
                     }
