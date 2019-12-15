@@ -237,11 +237,12 @@
 
 
         <Grid Grid.Column="0" Grid.Row="12" Grid.ColumnSpan="4">
-            <Button Content="Close"  BorderBrush ="Aqua"
-                Padding="1"
-                    FontWeight="Bold"
-                Command="{Binding OkCloseDialogCommand}"
-                Foreground="Yellow" Width="70" />
+
+            <Button  Style="{DynamicResource CancelButton}" 
+                    x:Name="CancelButton" 
+                    HorizontalAlignment="Center"  
+                    Command="{Binding OkCloseDialogCommand}"
+                    Width="102"/>
         </Grid>
     </Grid>
 </Window>

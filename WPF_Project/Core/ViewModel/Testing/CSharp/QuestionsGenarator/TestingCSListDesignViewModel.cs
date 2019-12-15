@@ -63,6 +63,28 @@ namespace Core
                         currentQuestion = QuestionsGenerator.GenerateThirdQuestion(answerId);
                         break;
                     }
+
+                case 4:
+                    {
+                        var correctAnswers =
+                            QuestionsGenerator.GenerateFourthQuestion(null);
+                        var answerId = wrongAnswerId(PageIndex, correctAnswers);
+
+
+                        currentQuestion = QuestionsGenerator.GenerateFourthQuestion(answerId);
+                        break;
+                    }
+
+                case 5:
+                    {
+                        var correctAnswers =
+                            QuestionsGenerator.GenerateFifthQuestion(null);
+                        var answerId = wrongAnswerId(PageIndex, correctAnswers);
+
+
+                        currentQuestion = QuestionsGenerator.GenerateFifthQuestion(answerId);
+                        break;
+                    }
             }
 
             Items.AddRange(currentQuestion.Answers);

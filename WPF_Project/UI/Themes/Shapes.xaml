@@ -18,7 +18,7 @@
         <Setter Property="Fill">
             <Setter.Value >
                 <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
-                    <GradientStop Color="{Binding BackColorEnd, FallbackValue=White}"  Offset="0.1" />
+                    <GradientStop Color="{Binding BackColorEnd, FallbackValue=White}"  Offset="0.2" />
                     <GradientStop Color="{Binding BackColor, FallbackValue={StaticResource PanelColor}}"  Offset="0.8" />
                 </LinearGradientBrush>
             </Setter.Value>

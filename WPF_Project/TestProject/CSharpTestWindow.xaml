@@ -10,7 +10,7 @@
         WindowStartupLocation="CenterScreen" 
         core:DialogCloser.Value ="{Binding DialogResult}" 
         Style="{StaticResource PanelWindow}"  ShowInTaskbar="True"
-        Title="Calculator" Height="500" Width="600" Loaded="Window_Loaded">
+        Title="Calculator" Height="540" Width="656.8" Loaded="Window_Loaded">
     <Grid>
 
         <Grid DataContext="{Binding RelativeSource={RelativeSource FindAncestor, 
@@ -18,69 +18,82 @@
 
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
                 <RowDefinition></RowDefinition>
-                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Margin="0,10,0,0" 
+            <!--Question text label-->
+            <TextBlock  Grid.Row="0" Margin="20,0,10,0" 
                                     Text="{Binding RelativeSource={RelativeSource FindAncestor, 
-                                                            AncestorType={x:Type Window}}, Path=DataContext.QuestionText}" 
-                                                            VerticalAlignment="Center" 
-                                                            HorizontalAlignment="Center"
-
-                                                       FontWeight="Bold"
-                                                       FontFamily="Times New Roman" 
-                                                            Foreground="DodgerBlue" 
-                                                            FontSize="30pt" 
-                                         
-                                                            >
+                                    AncestorType={x:Type Window}}, Path=DataContext.QuestionText}" 
+                                    VerticalAlignment="Center" 
+                                    HorizontalAlignment="Left"
+                                    FontFamily = "{StaticResource LabelFont}"
+                                    FontWeight  = "{StaticResource LabelWeight}"
+                                    Foreground="{StaticResource WordDarkBlueBrush}" 
+                                    FontSize="15pt">
             </TextBlock>
 
 
 
+            <!--ListBox with questions-->
+            <ListBox Margin="10,0,10,0" 
+                     Grid.Row="1" Style="{StaticResource TestingListBox}" >
 
-            <ListBox Grid.Row="1" Style="{StaticResource TestingListBox}" >
+
             </ListBox>
 
 
-            <controls:Pager 
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Center" 
+                        Grid.Row="3">
+                <!--ListBox pager-->
+                <controls:Pager Background="Transparent"
                 IsEnabled="False"
-                Grid.Row="2"  IsButtonsVisible="{Binding RelativeSource={RelativeSource FindAncestor, 
+                  IsButtonsVisible="{Binding RelativeSource={RelativeSource FindAncestor, 
                         AncestorType={x:Type Window}}, Path=DataContext.IsPagerButtonsVisible}" 
                                      
-                PagesCount="{Binding RelativeSource={RelativeSource FindAncestor, 
+                        PagesCount="{Binding RelativeSource={RelativeSource FindAncestor, 
                         AncestorType={x:Type Window}}, Path=DataContext.TestSelectionDataContext.PageCount}" 
-                                     
-                                     
-                                         CurrentPageIndex="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                
+                                
+                                
+                        CurrentPageIndex="{Binding RelativeSource={RelativeSource FindAncestor, 
                         AncestorType={x:Type Window}}, Path=DataContext.TestSelectionDataContext.PageIndex, Mode=TwoWay, UpdateSourceTrigger=  PropertyChanged}"
-                                    ShowPagesCount="3"  
-                                    HorizontalAlignment="Center"  
+                                    ShowPagesCount="5"  
+                                    HorizontalAlignment="Center" Margin="0,0,0,-0.2" Width="545"  
  >
 
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="PageChanged">
-                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor, 
-                        AncestorType={x:Type Window}}, Path=DataContext.PageChangedCommand}"
-                                               
-                                               />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PageChanged">
+                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor, 
+                        AncestorType={x:Type Window}}, 
+                            Path=DataContext.PageChangedCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
 
-            </controls:Pager>
+                </controls:Pager>
 
+            </StackPanel>
 
+            <Button Grid.Row="4"  Style="{DynamicResource CancelButton}" 
+                        Command="{Binding RelativeSource={RelativeSource FindAncestor, 
+                        AncestorType={x:Type Window}}, 
+                        Path=DataContext.OkCloseDialogCommand}"
+                  Width="110" />
+
+            <Button Grid.Row="2" Height="30"  Style="{DynamicResource NextButton}" x:Name="NextButton" 
+                        Command="{Binding DataContext.NextQuestionCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                  Width="107"  />
         </Grid>
-        <Button Content="Next question" HorizontalAlignment="Left" 
-                    Command="{Binding NextQuestionCommand}"
-                    Margin="434,354,0,0" VerticalAlignment="Top" Width="98" Height="22"/>
 
-        <Button Content="Close"  BorderBrush ="Aqua"
-                Padding="1"
-                    FontWeight="Bold"
-                Command="{Binding OkCloseDialogCommand}"
-                Foreground="Yellow" Width="70" Margin="28,349,458,10.4" />
+
+
+
+
 
 
 

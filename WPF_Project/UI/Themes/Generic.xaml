@@ -13,6 +13,9 @@
 
     <GridLength x:Key="GridSeparator">5</GridLength>
 
+
+
+    <!-- ListBoxItem with tranparent background for CheckBox -->
     <Style TargetType="{x:Type ListBoxItem}" x:Key="InactiveTransparentListItem" >
         <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False"/>
 
@@ -34,6 +37,7 @@
                     </Grid>
                     <ControlTemplate.Triggers>
 
+
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="Selector.IsSelectionActive" Value="False" />
@@ -49,8 +53,6 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="Bd" Property="Background" Value="Transparent" />
                         </MultiTrigger>
-
-
 
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -177,9 +179,7 @@
                                         </Image>
                                     </Border >
 
-                                    <Image HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                                            Source="/UI;component/Images/Buttons/Shadow.png">
-                                    </Image>
+
                                 </StackPanel>
                             </Grid>
                         </Grid>
@@ -224,71 +224,9 @@
 
 
 
-    <!-- CheckBox Selection ListBox -->
-    <Style TargetType="{x:Type ListBox}" x:Key="AnimatedListBox" >
-        <Setter Property="ItemsSource" Value="{Binding Items}"></Setter>
-        <Setter Property="SelectedItem" Value="{Binding SelectedItem}"></Setter>
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"></Setter>
-        <Setter Property="Background" Value="Transparent"></Setter>
-        <Setter Property="BorderBrush" Value="Transparent"></Setter>
-        <Setter Property="ItemTemplate">
-            <Setter.Value>
-                <DataTemplate>
-                    <Grid x:Name="Bd" >
-                        <Grid.Background>
-                            <SolidColorBrush x:Name="ButtonBrush"  />
-                        </Grid.Background>
-
-                        <controls:EnhancedCheckBox  FontSize="20" 
-                                                            TitleLabel="{Binding Name}" 
-                                                            HorizontalContentAlignment="Stretch"
-                                                             CheckSize="30"
-							Height="60"
-							AdditionalLabel ="{Binding Id}" Margin="5"
-							AdditionalLabelVisible="{Binding ShowName}"
-							IsChecked="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}">
-                        </controls:EnhancedCheckBox>
-                    </Grid>
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="ItemContainerStyle">
-            <Setter.Value>
-                <Style TargetType="{x:Type ListBoxItem}"  BasedOn="{StaticResource InactiveTransparentListItem}">
-                </Style>
-            </Setter.Value>
-        </Setter>
-
-        <Setter Property="interactivity:InteractivityItems.Template">
-            <Setter.Value>
-                <interactivity:InteractivityTemplate>
-                    <interactivity:InteractivityItems>
-                        <interactivity:InteractivityItems.Behaviors>
-                            <behaviours:AnimateListBoxItemsBehavior Tick="0:0:0.05">
-                                <behaviours:AnimateListBoxItemsBehavior.Animation>
-                                    <DoubleAnimation From="320" To="0" Duration="0:0:0.15"/>
-                                </behaviours:AnimateListBoxItemsBehavior.Animation>
-                                <behaviours:AnimateListBoxItemsBehavior.OpacityAnimation>
-                                    <DoubleAnimation From="0" To="1" Duration="0:0:0.5"/>
-                                </behaviours:AnimateListBoxItemsBehavior.OpacityAnimation>
-                            </behaviours:AnimateListBoxItemsBehavior>
-                        </interactivity:InteractivityItems.Behaviors>
-                    </interactivity:InteractivityItems>
-                </interactivity:InteractivityTemplate>
-            </Setter.Value>
-        </Setter>
-
-    </Style>
 
 
-
-
-
-
-
-
-
-    <!-- CheckBox Selection ListBox -->
+    <!-- CheckBox Selection ListBox for Tests-->
     <Style TargetType="{x:Type ListBox}" x:Key="TestingListBox" >
         <Setter Property="ItemsSource" Value="{Binding Items}"></Setter>
         <Setter Property="SelectedItem" Value="{Binding SelectedItem}"></Setter>
@@ -323,6 +261,8 @@
                 </Style>
             </Setter.Value>
         </Setter>
+        
+        
 
         <Setter Property="interactivity:InteractivityItems.Template">
             <Setter.Value>
@@ -342,6 +282,7 @@
                 </interactivity:InteractivityTemplate>
             </Setter.Value>
         </Setter>
+
 
     </Style>
 

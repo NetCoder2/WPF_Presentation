@@ -120,7 +120,7 @@ namespace Core
         public CSharpTestViewModel()
         {
             TestSelectionDataContext = new TestingCSListDesignViewModel();
-            TestSelectionDataContext.PageCount = 3;
+            TestSelectionDataContext.PageCount = 5;
             TestSelectionDataContext.GivenAnswers = new List<int>();
             GetQuestionText();
         }

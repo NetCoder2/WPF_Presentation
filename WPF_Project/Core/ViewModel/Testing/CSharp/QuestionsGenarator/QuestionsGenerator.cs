@@ -54,7 +54,7 @@ namespace Core
         public static TestQuestion GenerateThirdQuestion(int? wrongAnswerId)
         {
             var questionText = "Some question 3";
-            var questionId = 2;
+            var questionId = 3;
 
             var answers = new List<TestAnswer>
                                     {
@@ -62,6 +62,38 @@ namespace Core
                                         new TestAnswer("Some answer 32", 2, null, true),
                                         new TestAnswer("Some answer 32", 3, null),
                                         new TestAnswer("Some answer 34", 4, null),
+                                    };
+            FillWrongRedItem(wrongAnswerId, answers);
+            return CreateQuestion(questionText, questionId, answers.ToArray());
+        }
+
+        public static TestQuestion GenerateFourthQuestion(int? wrongAnswerId)
+        {
+            var questionText = "Some question 4";
+            var questionId = 4;
+
+            var answers = new List<TestAnswer>
+                                    {
+                                        new TestAnswer("Some answer 41", 1, null),
+                                        new TestAnswer("Some answer 42", 2, null, true),
+                                        new TestAnswer("Some answer 42", 3, null),
+                                        new TestAnswer("Some answer 44", 4, null),
+                                    };
+            FillWrongRedItem(wrongAnswerId, answers);
+            return CreateQuestion(questionText, questionId, answers.ToArray());
+        }
+
+        public static TestQuestion GenerateFifthQuestion(int? wrongAnswerId)
+        {
+            var questionText = "Some question 5";
+            var questionId = 5;
+
+            var answers = new List<TestAnswer>
+                                    {
+                                        new TestAnswer("Some answer 51", 1, null),
+                                        new TestAnswer("Some answer 52", 2, null, true),
+                                        new TestAnswer("Some answer 52", 3, null),
+                                        new TestAnswer("Some answer 54", 4, null),
                                     };
             FillWrongRedItem(wrongAnswerId, answers);
             return CreateQuestion(questionText, questionId, answers.ToArray());

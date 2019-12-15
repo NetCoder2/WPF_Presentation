@@ -69,8 +69,7 @@
     <Compile Include="ViewModel\SelectionList\SelectionItem.cs" />
     <Compile Include="ViewModel\SelectionList\SelectionItemsDataViewModel.cs" />
     <Compile Include="ViewModel\Testing\CSharp\QuestionsGenarator\QuestionsGenerator.cs" />
-    <Compile Include="ViewModel\Testing\CSharp\TestingCSListDesignViewModel.cs" />
-    <Compile Include="ViewModel\Testing\TestingSelectionViewModel.cs" />
+    <Compile Include="ViewModel\Testing\CSharp\QuestionsGenarator\TestingCSListDesignViewModel.cs" />
     <Compile Include="ViewModel\Testing\TestQuestion.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\Window\WindowViewModel.cs" />

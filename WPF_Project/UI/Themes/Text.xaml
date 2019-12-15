@@ -66,4 +66,7 @@
         </Setter>
     </Style>
 
+
+    <FontFamily x:Key="LabelFont">Tahoma</FontFamily>
+    <FontWeight x:Key="LabelWeight">Bold</FontWeight>
 </ResourceDictionary>

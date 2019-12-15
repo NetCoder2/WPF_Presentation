@@ -21,7 +21,7 @@ namespace Core
             // if aplication is in the design mode or vale is true
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()) || !(bool)value)
             {
-                return Visibility.Collapsed;
+                return Visibility.Hidden;
             }
 
             return Visibility.Visible;
