@@ -35,18 +35,6 @@ namespace Core.TitlePanel
         private double shadowBlur = 8;
 
 
-
-
-        /// <summary>
-        /// The animation the play when the window is first loaded
-        /// </summary>
-        private WindowAnimation panelLoadAnimation = WindowAnimation.None;
-
-        /// <summary>
-        /// The animation the play when the panel is unloaded
-        /// </summary>
-        private WindowAnimation panelUnloadAnimation = WindowAnimation.None;
-
         /// <summary>
         /// The time any animation takes to complete
         /// </summary>
@@ -75,9 +63,8 @@ namespace Core.TitlePanel
         /// </summary>
         public WindowAnimation PanelLoadAnimation
         {
-            get { return PanelLoadAnimation1; }
-            set { PanelLoadAnimation1 = value; }
-        }
+            get;set;
+        } = WindowAnimation.None;
 
 
         /// <summary>
@@ -85,9 +72,8 @@ namespace Core.TitlePanel
         /// </summary>
         public WindowAnimation PanelUnloadAnimation
         {
-            get { return panelUnloadAnimation; }
-            set { panelUnloadAnimation = value; }
-        }
+            get;set;
+        }   = WindowAnimation.None;
 
 
         /// <summary>
@@ -155,9 +141,6 @@ namespace Core.TitlePanel
             set { shadowBlur = value; }
         }
 
-
-
-        public WindowAnimation PanelLoadAnimation1 { get => panelLoadAnimation; set => panelLoadAnimation = value; }
 
         #endregion
 

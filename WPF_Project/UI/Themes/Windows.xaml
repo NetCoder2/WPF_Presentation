@@ -242,11 +242,9 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="ShowInTaskbar" Value="False"/>
         <Setter Property="Template">
-
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Window}">
                     <Grid>
-
                          <!--Dummy gray background for inactive state of the window--> 
                         <Border Background="{StaticResource ForegroundDarkBrush}" 
                                             Opacity="0.4" 

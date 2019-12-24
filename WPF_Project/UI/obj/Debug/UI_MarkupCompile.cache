@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-11860320264
+13-1693082089
 
-9-1227939196
+11-1489687510
 19-1343521298
-Controls\Pager.xaml;Panels\BevelPanel.xaml;Panels\WindowTitlePanel.xaml;Themes\Buttons.xaml;Themes\Colors.xaml;Themes\CommonResources.xaml;Themes\Generic.xaml;Themes\Panels.xaml;Themes\Shapes.xaml;Themes\Text.xaml;Themes\Windows.xaml;
+Controls\Pager.xaml;Panels\BevelPanel.xaml;Panels\UserControl1.xaml;Panels\WindowTitlePanel.xaml;Themes\Buttons.xaml;Themes\Colors.xaml;Themes\CommonResources.xaml;Themes\Generic.xaml;Themes\Panels.xaml;Themes\Shapes.xaml;Themes\Text.xaml;Themes\Windows.xaml;Windows\MessageWindow.xaml;
 
 False
 

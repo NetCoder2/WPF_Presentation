@@ -14,15 +14,15 @@ namespace Core
     {
         public static TestQuestion GenerateFirstQuestion(int? wrongAnswerId)
         {
-            var questionText = "Some question 1";
+            var questionText = "Which of the following operator represents a conditional operation in C#?";
             var questionId = 1;
 
             var answers = new List<TestAnswer>
                                     {
-                                        new TestAnswer("Some answer 11", 1, null),
-                                        new TestAnswer("Some answer 12", 2, null),
-                                        new TestAnswer("Some answer 13", 3, null, true),
-                                        new TestAnswer("Some answer 14", 4, null),
+                                        new TestAnswer("?:", 1, null, true),
+                                        new TestAnswer("is", 2, null),
+                                        new TestAnswer("as", 3, null),
+                                        new TestAnswer("*", 4, null),
                                     };
 
             FillWrongRedItem(wrongAnswerId, answers);
@@ -35,15 +35,15 @@ namespace Core
 
         public static TestQuestion GenerateSecondQuestion(int? wrongAnswerId)
         {
-            var questionText = "Some question 2";
+            var questionText = "Which of the following converts a type to a small floating point number in C#?";
             var questionId = 2;
 
             var answers = new List<TestAnswer>
                                     {
-                                        new TestAnswer("Some answer 21", 1, null),
-                                        new TestAnswer("Some answer 22", 2, null),
-                                        new TestAnswer("Some answer 23", 3, null),
-                                        new TestAnswer("Some answer 24", 4, null, true),
+                                        new TestAnswer("ToInt64", 1, null),
+                                        new TestAnswer("ToSbyte", 2, null),
+                                        new TestAnswer("ToSingle", 3, null, true),
+                                        new TestAnswer("ToInt32", 4, null),
                                     };
 
             FillWrongRedItem(wrongAnswerId, answers);
@@ -53,15 +53,15 @@ namespace Core
 
         public static TestQuestion GenerateThirdQuestion(int? wrongAnswerId)
         {
-            var questionText = "Some question 3";
+            var questionText = "Which of the following is the default access specifier of a class?";
             var questionId = 3;
 
             var answers = new List<TestAnswer>
                                     {
-                                        new TestAnswer("Some answer 31", 1, null),
-                                        new TestAnswer("Some answer 32", 2, null, true),
-                                        new TestAnswer("Some answer 32", 3, null),
-                                        new TestAnswer("Some answer 34", 4, null),
+                                        new TestAnswer("Private", 1, null),
+                                        new TestAnswer("Public", 2, null),
+                                        new TestAnswer("Protected", 3, null),
+                                        new TestAnswer("Internal", 4, null, true),
                                     };
             FillWrongRedItem(wrongAnswerId, answers);
             return CreateQuestion(questionText, questionId, answers.ToArray());
@@ -69,15 +69,15 @@ namespace Core
 
         public static TestQuestion GenerateFourthQuestion(int? wrongAnswerId)
         {
-            var questionText = "Some question 4";
+            var questionText = "Which of the following defines unboxing correctly?";
             var questionId = 4;
 
             var answers = new List<TestAnswer>
                                     {
-                                        new TestAnswer("Some answer 41", 1, null),
-                                        new TestAnswer("Some answer 42", 2, null, true),
-                                        new TestAnswer("Some answer 42", 3, null),
-                                        new TestAnswer("Some answer 44", 4, null),
+                                        new TestAnswer("When a value type is converted to object type, it is called unboxing", 1, null),
+                                        new TestAnswer("When an object type is converted to a value type, it is called unboxing", 2, null, true),
+                                        new TestAnswer("Both of the above", 3, null),
+                                        new TestAnswer("None of the above", 4, null),
                                     };
             FillWrongRedItem(wrongAnswerId, answers);
             return CreateQuestion(questionText, questionId, answers.ToArray());
@@ -85,15 +85,33 @@ namespace Core
 
         public static TestQuestion GenerateFifthQuestion(int? wrongAnswerId)
         {
-            var questionText = "Some question 5";
+            var questionText = "Which of the following preprocessor directive allows creating " +
+                "a compound conditional directive in C#?";
             var questionId = 5;
 
             var answers = new List<TestAnswer>
                                     {
-                                        new TestAnswer("Some answer 51", 1, null),
-                                        new TestAnswer("Some answer 52", 2, null, true),
-                                        new TestAnswer("Some answer 52", 3, null),
-                                        new TestAnswer("Some answer 54", 4, null),
+                                        new TestAnswer("elif", 1, null, true),
+                                        new TestAnswer("define", 2, null),
+                                        new TestAnswer("if", 3, null),
+                                        new TestAnswer("else", 4, null),
+                                    };
+            FillWrongRedItem(wrongAnswerId, answers);
+            return CreateQuestion(questionText, questionId, answers.ToArray());
+        }
+
+        public static TestQuestion GenerateSixthQuestion(int? wrongAnswerId)
+        {
+            var questionText = "Which of the following preprocessor directive allows " +
+                "generating a level one warning from a specific location in your code in C#?";
+            var questionId = 5;
+
+            var answers = new List<TestAnswer>
+                                    {
+                                        new TestAnswer("warning", 1, null, true),
+                                        new TestAnswer("region", 2, null),
+                                        new TestAnswer("line", 3, null),
+                                        new TestAnswer("error", 4, null),
                                     };
             FillWrongRedItem(wrongAnswerId, answers);
             return CreateQuestion(questionText, questionId, answers.ToArray());

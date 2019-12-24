@@ -4,55 +4,77 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:core="clr-namespace:Core;assembly=Core"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:controls="clr-namespace:UI.Controls;assembly=UI"
         WindowStartupLocation="CenterScreen" 
         core:DialogCloser.Value ="{Binding DialogResult}" 
         Style="{StaticResource PanelWindow}"  ShowInTaskbar="True"
-        Title="Calculator" Height="540" Width="656.8" Loaded="Window_Loaded">
+        Title="C# Test" Height="560" Width="710" Loaded="Window_Loaded">
     <Grid>
 
         <Grid DataContext="{Binding RelativeSource={RelativeSource FindAncestor, 
                         AncestorType={x:Type Window}}, Path=DataContext.TestSelectionDataContext}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="133*"/>
+                <ColumnDefinition Width="173*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
 
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="85"></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="45"></RowDefinition>
                 <RowDefinition Height="45"></RowDefinition>
                 <RowDefinition Height="45"></RowDefinition>
+                
             </Grid.RowDefinitions>
 
             <!--Question text label-->
-            <TextBlock  Grid.Row="0" Margin="20,0,10,0" 
+            <TextBlock  Grid.Row="0" 
+                        Grid.ColumnSpan="2"
+                        Grid.Column="1"
+                        Margin="0,10,0,5" 
+                        Style="{StaticResource MainLabel}"
                                     Text="{Binding RelativeSource={RelativeSource FindAncestor, 
                                     AncestorType={x:Type Window}}, Path=DataContext.QuestionText}" 
                                     VerticalAlignment="Center" 
                                     HorizontalAlignment="Left"
-                                    FontFamily = "{StaticResource LabelFont}"
-                                    FontWeight  = "{StaticResource LabelWeight}"
+                                    TextWrapping="Wrap"
+                                    TextAlignment="Justify"
                                     Foreground="{StaticResource WordDarkBlueBrush}" 
                                     FontSize="15pt">
             </TextBlock>
 
-
+            <Border Style="{StaticResource TitleBorder}"  
+                     Grid.Row="1" 
+                    Grid.Column="1"
+                    Background="White"
+                     Grid.ColumnSpan="2"
+                    Margin="0">
 
             <!--ListBox with questions-->
-            <ListBox Margin="10,0,10,0" 
-                     Grid.Row="1" Style="{StaticResource TestingListBox}" >
+                <ListBox  BorderThickness="0"  Margin="10" 
+                    IsEnabled ="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                    AncestorType={x:Type Window}}, 
+                                    Path=DataContext.IsNextQuestionEnabled}"   
+                     Style="{StaticResource TestingListBox}"  >
 
 
             </ListBox>
-
+            </Border>
 
             <StackPanel Orientation="Horizontal" 
                         HorizontalAlignment="Center" 
-                        Grid.Row="3">
+                        Grid.Row="3" 
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2" 
+                        Margin="34,0.2,33.8,44.4" Grid.RowSpan="2">
                 <!--ListBox pager-->
                 <controls:Pager Background="Transparent"
-                IsEnabled="False"
+                IsEnabled ="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                    AncestorType={x:Type Window}}, Path=DataContext.IsPagerEnabled}" 
                   IsButtonsVisible="{Binding RelativeSource={RelativeSource FindAncestor, 
                         AncestorType={x:Type Window}}, Path=DataContext.IsPagerButtonsVisible}" 
                                      
@@ -78,23 +100,28 @@
                 </controls:Pager>
 
             </StackPanel>
-
-            <Button Grid.Row="4"  Style="{DynamicResource CancelButton}" 
+            
+            <!--Close button-->
+            <Button Grid.Row="4"  
+                    Grid.Column="1"
+                    Style="{DynamicResource CancelButton}" 
                         Command="{Binding RelativeSource={RelativeSource FindAncestor, 
                         AncestorType={x:Type Window}}, 
                         Path=DataContext.OkCloseDialogCommand}"
-                  Width="110" />
+                  Width="110" Grid.ColumnSpan="2" Margin="251,0.4,251.8,0.4" />
 
-            <Button Grid.Row="2" Height="30"  Style="{DynamicResource NextButton}" x:Name="NextButton" 
-                        Command="{Binding DataContext.NextQuestionCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
-                  Width="107"  />
+            <!--Next Question button-->
+            <Button 
+                    Grid.Column="1"
+                    Visibility="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                    AncestorType={x:Type Window}}, Path=DataContext.IsNextQuestionEnabled, 
+                                    Converter={StaticResource booleanVisibilityConverter}}"
+                    Grid.Row="2" Height="30"  
+                    Style="{DynamicResource NextButton}" x:Name="NextButton" 
+                    Command="{Binding DataContext.NextQuestionCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                    Width="107" Grid.ColumnSpan="2"
+                    Margin="253,7,252.8,7.8"  />
         </Grid>
-
-
-
-
-
-
 
 
 

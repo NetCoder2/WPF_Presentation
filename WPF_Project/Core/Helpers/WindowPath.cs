@@ -43,6 +43,14 @@ namespace Core.Helpers
             get { return "MainWindow.xaml"; }
         }
 
+        /// <summary>
+        /// The window with message
+        /// </summary>
+        public static string MessageWindow
+        {
+            get { return "/UI;component/Windows/MessageWindow.xaml"; }
+        }
+
 
         #endregion
 

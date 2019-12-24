@@ -72,6 +72,7 @@
     <Compile Include="ViewModel\Testing\CSharp\QuestionsGenarator\TestingCSListDesignViewModel.cs" />
     <Compile Include="ViewModel\Testing\TestQuestion.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\Window\DialogInfoViewModel.cs" />
     <Compile Include="ViewModel\Window\WindowViewModel.cs" />
     <Compile Include="ViewModel\Window\WindowModel.cs" />
     <Compile Include="ViewModel\Base\BaseModel.cs" />

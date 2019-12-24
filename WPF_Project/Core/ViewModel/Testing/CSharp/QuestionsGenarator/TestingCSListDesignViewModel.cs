@@ -17,15 +17,32 @@ namespace Core
             get; set;
         }
 
-        TestQuestion currentQuestion = new TestQuestion();
-        public TestQuestion CurrentQuestion
-        {
-            get { return currentQuestion; }
-        }
+        public List<TestQuestion> Questions { get; set; } = new List<TestQuestion>();
+
+        /// <summary>
+        /// Count of questions
+        /// </summary>
+        public int QuestionCount
+        { private set;  get; } = 6;
+
+        /// <summary>
+        /// Count of correct answers
+        /// </summary>
+        public int CorrectCount
+        { private set; get; }
+
+
+        /// <summary>
+        /// Count of wrong answers
+        /// </summary>
+        public int WrongCount
+        { private set; get; }
+
+        public TestQuestion CurrentQuestion { get; private set; } = new TestQuestion();
 
         public override void GetItems(int pageSize, int pageIndex)
         {
-            currentQuestion = new TestQuestion();
+            CurrentQuestion = new TestQuestion();
             Items = new AdvancedObservableCollection<TestAnswer>();
 
 
@@ -38,8 +55,7 @@ namespace Core
                             QuestionsGenerator.GenerateFirstQuestion(null);
                         var answerId = wrongAnswerId(PageIndex, correctAnswers);
 
-                        currentQuestion = QuestionsGenerator.GenerateFirstQuestion(answerId);
-
+                        CurrentQuestion = QuestionsGenerator.GenerateFirstQuestion(answerId);
 
                         break;
                     }
@@ -49,8 +65,8 @@ namespace Core
                             QuestionsGenerator.GenerateSecondQuestion(null);
                         var answerId = wrongAnswerId(PageIndex, correctAnswers);
 
-
-                        currentQuestion = QuestionsGenerator.GenerateSecondQuestion(answerId);
+                        CurrentQuestion = QuestionsGenerator.GenerateSecondQuestion(answerId);
+                        
                         break;
                     }
                 case 3:
@@ -59,8 +75,7 @@ namespace Core
                             QuestionsGenerator.GenerateThirdQuestion(null);
                         var answerId = wrongAnswerId(PageIndex, correctAnswers);
 
-
-                        currentQuestion = QuestionsGenerator.GenerateThirdQuestion(answerId);
+                        CurrentQuestion = QuestionsGenerator.GenerateThirdQuestion(answerId);
                         break;
                     }
 
@@ -70,8 +85,7 @@ namespace Core
                             QuestionsGenerator.GenerateFourthQuestion(null);
                         var answerId = wrongAnswerId(PageIndex, correctAnswers);
 
-
-                        currentQuestion = QuestionsGenerator.GenerateFourthQuestion(answerId);
+                        CurrentQuestion = QuestionsGenerator.GenerateFourthQuestion(answerId);
                         break;
                     }
 
@@ -82,13 +96,32 @@ namespace Core
                         var answerId = wrongAnswerId(PageIndex, correctAnswers);
 
 
-                        currentQuestion = QuestionsGenerator.GenerateFifthQuestion(answerId);
+                        CurrentQuestion = QuestionsGenerator.GenerateFifthQuestion(answerId);
+                        break;
+                    }
+                case 6:
+                    {
+                        var correctAnswers =
+                            QuestionsGenerator.GenerateSixthQuestion(null);
+                        var answerId = wrongAnswerId(PageIndex, correctAnswers);
+
+
+                        CurrentQuestion = QuestionsGenerator.GenerateSixthQuestion(answerId);
                         break;
                     }
             }
 
-            Items.AddRange(currentQuestion.Answers);
+            Items.AddRange(CurrentQuestion.Answers);
+            AddQuestionToList(CurrentQuestion);
 
+        }
+
+        private void AddQuestionToList(TestQuestion question)
+        {
+            if (Questions.Count < PageCount)
+            {
+                Questions.Add(question);
+            }
         }
 
         /// <summary>
@@ -105,10 +138,9 @@ namespace Core
             {
                 var givenAnswerId = GivenAnswers[pageIndex - 1];
 
-                //MessageBox.Show(givenAnswerId.ToString());
                 var answ = question.Answers;
                 var correctId = answ.Where(a => a.IsCorrectAnswer);
-                //MessageBox.Show(correctId.First().Id.ToString());
+
                 if (givenAnswerId != correctId.First().Id)
                 {
                     wrongAnswerId = givenAnswerId;
@@ -117,6 +149,40 @@ namespace Core
 
             return wrongAnswerId;
         }
+
+
+
+        /// <summary>
+        /// Function to a count of incorrect answers
+        /// </summary>
+        public void CalculateAnswersCount()
+        {
+            WrongCount = CorrectCount = 0;
+
+            for (int i = 0; i <= Questions.Count-1; i++)
+            {
+                var question = Questions[i];
+                var answ = question.Answers;
+                var correctId = answ.Where(a => a.IsCorrectAnswer);
+
+                var givenAnswerId = GivenAnswers[i];
+
+                if (givenAnswerId != correctId.First().Id)
+                {
+                    WrongCount++;
+                }
+
+                if (givenAnswerId == correctId.First().Id)
+                {
+                    CorrectCount++;
+                }
+
+            }
+
+            //return count;
+        }
+
+
     }
 
 }

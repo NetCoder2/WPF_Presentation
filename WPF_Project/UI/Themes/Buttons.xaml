@@ -98,8 +98,7 @@
                                  Text="Close" 
                                  VerticalAlignment="Center" 
                                  HorizontalAlignment="Left"
-                                 FontFamily = "{StaticResource LabelFont}"
-                                 FontWeight  = "{StaticResource LabelWeight}"
+                                 Style="{StaticResource MainLabel}"
                                  FontSize="100pt" 
                                  Foreground="{StaticResource WordRedBrush}">
                                 </TextBlock>
@@ -134,8 +133,7 @@
                                  Text="Next" 
                                  VerticalAlignment="Center" 
                                  HorizontalAlignment="Left"
-                                 FontFamily = "{StaticResource LabelFont}"
-                                 FontWeight  = "{StaticResource LabelWeight}"
+                                 Style="{StaticResource MainLabel}"
                                  FontSize="100pt" 
                                  Foreground="{StaticResource WordBlueBrush}">
                                 </TextBlock>

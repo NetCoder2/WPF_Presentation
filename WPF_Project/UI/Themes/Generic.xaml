@@ -14,6 +14,24 @@
     <GridLength x:Key="GridSeparator">5</GridLength>
 
 
+    <!-- Title border style for window with title -->
+    <Style TargetType="{x:Type Border}" x:Key="TitleBorder" >
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Background" Value="AliceBlue"/>
+        <Setter Property="CornerRadius" Value="7"/>
+        <Setter Property="BorderBrush" Value="#666666"/>
+        <Setter Property="BorderThickness" Value="1"/>
+
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect   
+                   BlurRadius="5" 
+                   ShadowDepth="5"  
+                   Color="{StaticResource ShadowColor}" />
+            </Setter.Value>
+        </Setter>
+        
+    </Style>
 
     <!-- ListBoxItem with tranparent background for CheckBox -->
     <Style TargetType="{x:Type ListBoxItem}" x:Key="InactiveTransparentListItem" >
@@ -236,16 +254,13 @@
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Grid x:Name="Bd" >
-                        <Grid.Background>
-                            <SolidColorBrush x:Name="ButtonBrush"  />
-                        </Grid.Background>
-
-                        <controls:EnhancedCheckBox  FontSize="20" 
-                                                            TitleLabel="{Binding AnswerText}" 
-                                                            HorizontalContentAlignment="Stretch"
-                                                             CheckSize="30"
-                                                            SmallRectColor ="{Binding AnswerColor}" 
+                    <Grid x:Name="Bd">
+                        <controls:EnhancedCheckBox  
+                            FontSize="17" 
+                            TitleLabel="{Binding AnswerText}" 
+                            HorizontalContentAlignment="Stretch"
+                            CheckSize="30"
+                            SmallRectColor ="{Binding AnswerColor}" 
 							Height="40"
 							AdditionalLabel ="{Binding Id}" Margin="5"
 							AdditionalLabelVisible="False"
@@ -261,8 +276,8 @@
                 </Style>
             </Setter.Value>
         </Setter>
-        
-        
+
+
 
         <Setter Property="interactivity:InteractivityItems.Template">
             <Setter.Value>
@@ -282,7 +297,6 @@
                 </interactivity:InteractivityTemplate>
             </Setter.Value>
         </Setter>
-
 
     </Style>
 

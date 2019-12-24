@@ -482,3 +482,7 @@ C:\Users\Yuri\Desktop\WPF\MyWPF\WPF_Presentation\WPF_Project\UI\obj\Debug\UI.csp
 C:\Users\Yuri\Desktop\WPF\MyWPF\WPF_Presentation\WPF_Project\UI\obj\Debug\UI.csproj.CopyComplete
 C:\Users\Yuri\Desktop\WPF\MyWPF\WPF_Presentation\WPF_Project\UI\obj\Debug\UI.dll
 C:\Users\Yuri\Desktop\WPF\MyWPF\WPF_Presentation\WPF_Project\UI\obj\Debug\UI.pdb
+C:\Users\Yuri\Desktop\WPF\MyWPF\WPF_Presentation\WPF_Project\UI\obj\Debug\Windows\MessageWindow.baml
+C:\Users\Yuri\Desktop\WPF\MyWPF\WPF_Presentation\WPF_Project\UI\obj\Debug\Windows\MessageWindow.g.cs
+C:\Users\Yuri\Desktop\WPF\MyWPF\WPF_Presentation\WPF_Project\UI\obj\Debug\Panels\UserControl1.g.cs
+C:\Users\Yuri\Desktop\WPF\MyWPF\WPF_Presentation\WPF_Project\UI\obj\Debug\Panels\UserControl1.baml

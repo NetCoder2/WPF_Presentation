@@ -147,6 +147,20 @@ namespace Core
             }
         }
 
+        /// <summary>
+        /// Opens dialog window with information label
+        /// </summary>
+        protected Window ShowInformationWindow(string information, string title)
+        {
+            var infoModel = ViewModelLocator.Instance.DialogInfoViewModel;
+
+            infoModel.InformationText = information;
+            infoModel.Title = title;
+
+            var windowUrl = WindowPath.MessageWindow;
+            return infoModel.OpenWindowFormUrl(windowUrl, infoModel, CurrentOpenedWindow, true);
+        }
+
 
         /// <summary>
         /// Opens window from the specified URL
@@ -157,7 +171,7 @@ namespace Core
         /// <param name="isDialog">TIs dialog window</param>
         public Window OpenWindowFormUrl(string windowUrl, object context, Window owner, bool isDialog)
         {
-            if (!string.IsNullOrEmpty(windowUrl))
+            if (!string.IsNullOrEmpty(windowUrl) && Application.Current != null)
             {
                 var uri = new Uri(windowUrl, UriKind.Relative);
                 CurrentOpenedWindow = (Window)Application.LoadComponent(uri);

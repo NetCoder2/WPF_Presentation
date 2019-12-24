@@ -9,6 +9,7 @@
 
     <!-- TextBox with beveled border -->
     <Style TargetType="{x:Type controls:BeveledTextBox}">
+        
         <Setter Property="Height" Value="30" />
         <Setter Property="Template">
             <Setter.Value>
@@ -64,6 +65,12 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <!--  Label's style in the application -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="MainLabel" >
+        <Setter Property="FontFamily" Value="{StaticResource LabelFont}" />
+        <Setter Property="FontWeight" Value="{StaticResource LabelWeight}" />
     </Style>
 
 

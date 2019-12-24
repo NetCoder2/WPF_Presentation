@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Helpers.Animation;
 
 namespace Core
 {
@@ -46,7 +47,20 @@ namespace Core
         /// </summary>
         public CSharpTestViewModel CSharpTestViewModel { get { return CreateViewModel<CSharpTestViewModel>(); } }
 
+        /// <summary>
+        /// The DialogInfo view model
+        /// </summary>
+        public DialogInfoViewModel DialogInfoViewModel
+        {
+            get
+            {
 
+                var dialog = CreateViewModel<DialogInfoViewModel>();
+                dialog.PanelContext.PanelLoadAnimation = WindowAnimation.ShowScaleAndFadeIn;
+                dialog.PanelContext.PanelUnloadAnimation = WindowAnimation.HideScaleAndFadeOut;
+                return dialog;
+            }
+        }
         protected T CreateViewModel<T>() where T : new()
         {
             return new T();

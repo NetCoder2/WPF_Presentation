@@ -21,6 +21,8 @@ namespace Core
 
         }
 
+        public List<TestQuestion> Questions { get; set; } = new List<TestQuestion>();
+
         /// <summary>
         /// Shows/Hides Pager buttons
         /// </summary>
@@ -29,6 +31,22 @@ namespace Core
             get;
             set;
         }
+
+        /// <summary>
+        /// Enables/Disables next question button
+        /// </summary>
+        public bool IsNextQuestionEnabled  { get; set; } = true;
+
+
+        /// <summary>
+        /// Enables/Disables pager
+        /// </summary>
+        public bool IsPagerEnabled
+        {
+            get;
+            set;
+        }
+
 
 
         /// <summary>
@@ -75,6 +93,11 @@ namespace Core
         /// </summary>
         private void PerformTest()
         {
+            if (TestSelectionDataContext.SelectedItemId == null)
+            {
+                ShowInformationWindow("Please, select at least one answer", "Answer selection");
+            }
+
             if (TestSelectionDataContext.SelectedItemId != null && !isFinishedTest)
             {
                 TestSelectionDataContext.GivenAnswers.Add(TestSelectionDataContext.SelectedItemId.Value);
@@ -84,11 +107,20 @@ namespace Core
                     TestSelectionDataContext.PageIndex++;
                     GetQuestionText();
                 }
+                // the test has been finished
                 else
                 {
                     IsPagerButtonsVisible = true;
                     TestSelectionDataContext.PageIndex = 1;
                     isFinishedTest = true;
+
+                    TestSelectionDataContext.CalculateAnswersCount();
+                    ShowInformationWindow(string.Format("Correct answers: {0}, wrong answers: {1}",
+                        TestSelectionDataContext.CorrectCount, TestSelectionDataContext.WrongCount), 
+                        "All answers review");
+
+                    IsPagerEnabled = isFinishedTest;
+                    IsNextQuestionEnabled = false;
 
                     PerformAnswer();
                 }
@@ -110,9 +142,7 @@ namespace Core
         /// </summary>
         private void GetQuestionText()
         {
-            //TestSelectionDataContext.CurrentQuestion.QuestionText;
             // gets question text
-            //QuestionText = questions.Questions[TestSelectionDataContext.PageIndex-1].QuestionText;
             QuestionText = TestSelectionDataContext.CurrentQuestion.QuestionText;
         }
 
@@ -120,7 +150,7 @@ namespace Core
         public CSharpTestViewModel()
         {
             TestSelectionDataContext = new TestingCSListDesignViewModel();
-            TestSelectionDataContext.PageCount = 5;
+            TestSelectionDataContext.PageCount = TestSelectionDataContext.QuestionCount;
             TestSelectionDataContext.GivenAnswers = new List<int>();
             GetQuestionText();
         }

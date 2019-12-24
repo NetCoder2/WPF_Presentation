@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Calculator\CalculatorViewModel_Tests.cs" />
+    <Compile Include="Core\CSharptest\CSharpTestViewModel_Tests.cs" />
     <Compile Include="Core\CurrencyConverter\CurrConvrterViewModel_Tests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

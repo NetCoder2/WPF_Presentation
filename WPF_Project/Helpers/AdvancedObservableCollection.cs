@@ -36,10 +36,18 @@ namespace Helpers
 
             this.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
             this.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
-            Application.Current.Dispatcher.Invoke((System.Action)delegate
+            if (Application.Current != null)
+            {
+                Application.Current.Dispatcher.Invoke((System.Action)delegate
+                {
+                    this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+                });
+            }
+            else
             {
                 this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-            });
+            }
+
 
 
         }

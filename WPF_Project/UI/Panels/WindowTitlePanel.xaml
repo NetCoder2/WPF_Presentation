@@ -86,18 +86,18 @@
                             </Grid.ColumnDefinitions>
 
 
-                            <Border Grid.Column ="1" BorderBrush="#666666" BorderThickness ="1" Visibility="{Binding TitleVisibility, FallbackValue=Visible}"
-                                    VerticalAlignment="Stretch" Background="AliceBlue" CornerRadius="7" >
-                                <Border.Effect>
-                                    <DropShadowEffect   BlurRadius="5" ShadowDepth="5"  Color="{StaticResource ShadowColor}" />
-                                </Border.Effect>
-                            </Border>
+                            <Border Grid.Column ="1" 
+                                    Style="{StaticResource TitleBorder}"
+                                    Visibility="{Binding TitleVisibility, FallbackValue=Visible}"
+                                    >
+                               </Border>
 
                             <!--Title label-->
                             <StackPanel  Grid.Column ="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-5,0,0">
 
 
-                                <TextBlock Text="{Binding TitleText, FallbackValue='Title'}" 
+                                <TextBlock 
+                                    Text="{Binding TitleText, FallbackValue='Title'}" 
                                                             VerticalAlignment="Center" 
                                                             HorizontalAlignment="Center"
                                                             Foreground="{StaticResource WordGreenBrush}"
