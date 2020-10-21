@@ -27,7 +27,7 @@ ___
 The .NET application has been created in the MS Viual Studio 2017 environment and uses .NET 4.6 Framework.    
 Some projects (the Core project) from the solution use the plugin "FodyPropertyChanged", which raises the `PropertyChanged` event, into property setters of classes which implement `INotifyPropertyChanged`. The plugin can found here https://github.com/Fody/PropertyChanged. 
 
-[:arrow_up:Оглавление](#Оглавление)
+[:arrow_up:Contents](#Contents)
 ____
 ## The solution overview
 
