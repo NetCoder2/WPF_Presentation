@@ -9,7 +9,7 @@
     2. [UI](#UI)
     3. [Helpers](#Helpers)
     4. [Tests](#Tests)
-3. [User interface](#User-interface)
+3. [The user interface](#The-user-interface)
     1. [The main window](#The-main-window)
     2. [Calculator](#Calculator)
     3. [Currency converter](#Currency-converter)
@@ -60,7 +60,7 @@ This project contains unit tests for the View Models from the `Core` project.
 [:arrow_up:Contents](#Contents)
 ____
 
-## User interface
+## The user interface
 
 #### The main window
 
