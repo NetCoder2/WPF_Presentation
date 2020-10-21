@@ -83,7 +83,7 @@ ____
 
 #### Currency converter
 
-On this form user can calculate prices of the currenties based on the rates from Internet.
+On the "CurrencyConverter.xaml" form the user can calculate prices of the currenties based on the rates from Internet.
 
 ![Image alt](https://github.com/YuryYuhno/WPF_Presentation/blob/master/Images/CurrencyConverter.png)
 
@@ -92,7 +92,7 @@ ____
 
 #### C# test
 
-On the "CSharpTestWindow.xaml" form user can perform the simple C# test and review given answers.
+On the "CSharpTestWindow.xaml" form the user can perform the simple C# test and review given answers.
 
 ![Image alt](https://github.com/YuryYuhno/WPF_Presentation/blob/master/Images/Test.png)
 
